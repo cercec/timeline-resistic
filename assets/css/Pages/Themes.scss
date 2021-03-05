@@ -1,0 +1,46 @@
+.themes {
+  h1 {
+    font-size: 12em;
+    line-height: 1em;
+    color: #000;
+  }
+
+  .themes-wrapper {
+    width: calc(100% - 100px);
+    margin: 0 auto;
+    padding: 5em 0;
+  }
+
+  .images {
+    display: flex;
+    position: relative;
+
+    img {
+      width: 310px;
+      border: 7px solid #fff;
+
+      &:last-of-type {
+        border: 17px solid #fff;
+        position: absolute;
+        bottom: -9em;
+        left: -15em;
+      }
+    }
+
+    .square {
+      border: 7px solid #fff;
+      background: $orange;
+      width: 252px;
+      height: 234px;
+    }
+  }
+
+  .intro {
+    padding-left: 9em;
+  }
+
+  a.button {
+    float: right;
+    margin-top: 3em;
+  }
+}

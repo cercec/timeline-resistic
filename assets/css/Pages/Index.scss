@@ -1,4 +1,9 @@
 .home {
+  h1 {
+    margin-bottom: 40px;
+    font-size: 45px;
+    color: $orange;
+  }
   .home-wrapper {
     display: flex;
     align-items: center;

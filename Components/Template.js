@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import Link from "next/link";
 
 export default function Template({children, classNamePage, pageName}) {
   return (
@@ -10,7 +11,9 @@ export default function Template({children, classNamePage, pageName}) {
       </Head>
       <div className={`container ${classNamePage}`}>
         <header>
-          <img className="logo" src="/logo.png" alt=""/>
+          <Link href="/">
+            <img className="logo" src="/logo.png" alt=""/>
+          </Link>
           <nav>
             {classNamePage === "home" ?
               <ul className={classNamePage}>
@@ -19,7 +22,7 @@ export default function Template({children, classNamePage, pageName}) {
               :
               <ul>
                 <li>Timeline</li>
-                <li>Thèmes</li>
+                <li><Link href="/themes">Thèmes</Link></li>
                 <li>Publications</li>
                 <li>Carte</li>
                 <li>Le Projet</li>

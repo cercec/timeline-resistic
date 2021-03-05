@@ -1,5 +1,6 @@
 import Template from "../Components/Template";
 import React from "react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="home-menu">
           <ul>
             <li>Timeline</li>
-            <li>Thèmes</li>
+            <li><Link href="/themes">Thèmes</Link></li>
             <li>Publications</li>
             <li>Dataviz</li>
             <li>Le Projet</li>
