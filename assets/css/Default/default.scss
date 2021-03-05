@@ -1,0 +1,51 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: $FuturaPT;
+}
+
+p {
+  font-size: 20px;
+}
+
+p, ul {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: $orange;
+  margin-bottom: 40px;
+  font-size: 45px;
+}
+
+a {
+  &.button {
+    border: 2px solid $orange;
+    color: $orange;
+    padding: 10px 45px;
+    display: inline-flex;
+  }
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: $tablet) {
+    width: calc(100% - 40px);
+  }
+}
+
+.logo {
+  width: 125px;
+}

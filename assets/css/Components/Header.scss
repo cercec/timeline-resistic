@@ -1,0 +1,62 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2em 0;
+  nav {
+    ul:not(.home) {
+      display: flex;
+      position: relative;
+      &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 4px;
+        background: #000;
+        position: absolute;
+        bottom: 6px;
+      }
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0.5em;
+        width: 70px;
+        font-size: 18px;
+        &:after {
+          content: "";
+          display: block;
+          width: 16px;
+          height: 16px;
+          border-radius: 50px;
+          background: #000;
+          margin-top: 10px;
+          position: relative;
+          transition: 0.2s;
+        }
+        &:hover {
+          cursor: pointer;
+          &:after {
+            background: $orange;
+            transform: scale(1.4);
+            transition: 0.2s;
+          }
+        }
+        &.active {
+          &:after {
+            background: $orange;
+            transform: scale(1.4);
+          }
+        }
+      }
+    }
+    ul {
+      &.home {
+        li {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
