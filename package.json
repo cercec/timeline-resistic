@@ -20,6 +20,7 @@
     "highcharts": "^8.2.2",
     "highcharts-react-official": "^3.0.0",
     "next": "9.5.5",
+    "next-nprogress": "^1.4.0",
     "node-sass": "^4.14.1",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",

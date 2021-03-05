@@ -3,11 +3,30 @@ import React from "react";
 import Link from "next/link";
 
 export default function Template({children, classNamePage, pageName}) {
+  const Menu = () => {
+    if (classNamePage === "home") {
+      return <ul className={classNamePage}>
+        <li>Contact</li>
+      </ul>
+    } else if (classNamePage === false) {
+      return;
+    } else {
+      return <ul>
+        <li><Link href="#">Timeline</Link></li>
+        <li><Link href="/themes">Thèmes</Link></li>
+        <li><Link href="#">Publications</Link></li>
+        <li><Link href="#">Carte</Link></li>
+        <li><Link href="#">Le Projet</Link></li>
+        <li><Link href="#">Contact</Link></li>
+      </ul>
+    }
+  }
   return (
     <div>
       <Head>
         <title>ResisTIC Timeline - {pageName}</title>
         <link rel="icon" href="/logo.png"/>
+        <link rel="stylesheet" href="https://use.typekit.net/rxw5tvt.css" />
       </Head>
       <div className={`container ${classNamePage}`}>
         <header>
@@ -15,20 +34,7 @@ export default function Template({children, classNamePage, pageName}) {
             <img className="logo" src="/logo.png" alt=""/>
           </Link>
           <nav>
-            {classNamePage === "home" ?
-              <ul className={classNamePage}>
-                <li>Contact</li>
-              </ul>
-              :
-              <ul>
-                <li>Timeline</li>
-                <li><Link href="/themes">Thèmes</Link></li>
-                <li>Publications</li>
-                <li>Carte</li>
-                <li>Le Projet</li>
-                <li>Contact</li>
-              </ul>
-            }
+            <Menu/>
           </nav>
         </header>
         {children}

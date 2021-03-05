@@ -1,5 +1,6 @@
 import Template from "../Components/Template";
 import React from "react";
+import Link from "next/link";
 
 export default function Themes() {
   return (
@@ -15,7 +16,7 @@ export default function Themes() {
         <div className="intro">
           <h1>Thèmes</h1>
           <p className="intro-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci asperiores doloribus, eveniet harum itaque laborum nisi officiis omnis pariatur perspiciatis porro quasi quo repudiandae saepe sed sequi vero voluptas.</p>
-          <a href="#" className="button full">Voir les thèmes</a>
+          <Link href="/themes-list"><a className="button full">Voir les thèmes</a></Link>
         </div>
       </div>
     </Template>

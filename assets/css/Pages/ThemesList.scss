@@ -1,0 +1,59 @@
+.themes-list {
+  .themes-wrapper {
+    h1 {
+      font-size: 4em;
+      margin-bottom: 1em;
+      color: #CECECE;
+    }
+    .themes-list-item {
+      display: flex;
+      align-items: center;
+    }
+    .themes-list-image {
+      background-size: cover;
+      height: 550px;
+      width: 481px;
+      position: absolute;
+      right: -5em;
+    }
+    ul {
+      text-align: right;
+      position: relative;
+      height: 495px;
+      &:before {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 6px;
+        background: #000;
+        position: absolute;
+        right: 5px;
+        bottom: 25px;
+        border-radius: 50px;
+      }
+      li {
+        font-size: 2em;
+        margin-bottom: 0.5em;
+        &:after {
+          content: "";
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border-radius: 50px;
+          background: #000;
+          position: relative;
+          transition: 0.2s;
+          margin-left: 1em;
+        }
+        &:hover {
+          cursor: pointer;
+          &:after {
+            background: $orange;
+            transform: scale(1.4);
+            transition: 0.2s;
+          }
+        }
+      }
+    }
+  }
+}
