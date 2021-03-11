@@ -1,6 +1,7 @@
 import Template from "../Components/Template";
 import React, {useState} from "react";
 import {fetchAllImages, fetchAllThemes} from "../utils/fetchers";
+import Link from "next/link";
 
 export default function ThemesList({images, themes}) {
 
@@ -10,7 +11,7 @@ export default function ThemesList({images, themes}) {
     return <ul>
       {themes.all_themes.data.map((e, i) => {
         return <li onMouseEnter={() => setImageId(e.image)} image-id={e.image}
-                   key={`${e.theme}-${i}`}>{e.theme}</li>
+                   key={`${e.theme}-${i}`}><Link href={`/timeline?theme-id=${e.id}`}>{e.theme}</Link></li>
       })}
     </ul>
   }
@@ -19,10 +20,9 @@ export default function ThemesList({images, themes}) {
       <div className="themes-wrapper">
         <h1>Thèmes</h1>
         <div className="themes-list-item">
-          <ul>
-            <ThemesListItems/>
-          </ul>
-          <div className="themes-list-image" style={{backgroundImage:`url("${src !== undefined && src.data !== undefined && src.data.full_url}")`}}/>
+          <ThemesListItems/>
+          <div className="themes-list-image"
+               style={{backgroundImage: `url("${src !== undefined && src.data !== undefined && src.data.full_url}")`}}/>
         </div>
       </div>
     </Template>

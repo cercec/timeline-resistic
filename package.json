@@ -11,7 +11,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@react-google-maps/api": "^1.13.0",
-    "algoliasearch": "^4.6.0",
+    "algoliasearch": "^4.8.5",
     "apexcharts": "^3.22.2",
     "axios": "^0.20.0",
     "chart.js": "^2.9.4",
@@ -28,6 +28,7 @@
     "react-dom": "16.13.1",
     "react-google-charts": "^3.0.15",
     "react-instantsearch-dom": "^6.8.2",
-    "react-vertical-timeline-component": "^3.3.0"
+    "react-vertical-timeline-component": "^3.3.3",
+    "vis-data": "^7.1.2"
   }
 }

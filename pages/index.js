@@ -13,7 +13,7 @@ export default function Home() {
         </div>
         <div className="home-menu">
           <ul>
-            <li>Timeline</li>
+            <li><Link href="/timeline">Timeline</Link></li>
             <li><Link href="/themes">Thèmes</Link></li>
             <li>Publications</li>
             <li>Dataviz</li>
