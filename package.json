@@ -1,5 +1,5 @@
 {
-  "name": "resistic-timeline-v2",
+  "name": "resistic",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,27 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "10.0.7",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@react-google-maps/api": "^1.13.0",
+    "algoliasearch": "^4.8.5",
+    "apexcharts": "^3.22.2",
+    "axios": "^0.20.0",
+    "chart.js": "^2.9.4",
+    "dateformat": "^3.0.3",
+    "google-map-react": "^2.1.9",
+    "highcharts": "^8.2.2",
+    "highcharts-react-official": "^3.0.0",
+    "next": "9.5.5",
+    "next-nprogress": "^1.4.0",
+    "node-sass": "^4.14.1",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.7.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-google-charts": "^3.0.15",
+    "react-instantsearch-dom": "^6.8.2",
+    "react-vertical-timeline-component": "^3.3.3",
+    "vis-data": "^7.1.2"
   }
 }

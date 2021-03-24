@@ -1,0 +1,93 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  overflow: scroll;
+  height: 100%;
+  box-shadow: 0 0 36px rgba(0, 0, 0, 0.06);
+  display: flex;
+  width: 40%;
+  color: #2D3748;
+  flex-direction: row-reverse;
+
+  &-content {
+    width: 100%;
+    background: #fff;
+    padding: 3em 6em 3em 3em;
+    overflow: scroll;
+  }
+
+  .close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 33px;
+      width: 2px;
+      background-color: $orange;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  h2 {
+    font-family: reross-quadratic;
+    font-size: 30px;
+    margin: 10px 0 20px;
+    color: $orange;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  &-description {
+    margin-bottom: 20px;
+  }
+
+  &-keywords span {
+    margin-right: 25px;
+    color: $orange;
+  }
+
+  &__themes-list {
+    margin-top: 20px;
+    li {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+      color: $orange;
+      &:before {
+        content: "T";
+        color: #fff;
+        background: $orange;
+        width: 30px;
+        height: 30px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+    }
+  }
+}
