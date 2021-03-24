@@ -13,7 +13,7 @@ export default function ThemesList({images, themes}) {
         return <li onMouseEnter={() => setImageId(e.image)} image-id={e.image}
                    key={`${e.theme}-${i}`}><Link href={{
           pathname: '/theme/[slug]',
-          query: { slug: e.id },
+          query: { slug: e.id, theme_name: e.theme },
         }}>{e.theme}</Link></li>
       })}
     </ul>

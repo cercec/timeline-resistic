@@ -55,13 +55,36 @@
     }
   }
 
+  &-themes-content {
+    width: 30%;
+    background: #EFEFEF;
+    padding: 40px 30px;
+    height: fit-content;
+    position: relative;
+
+    .upper-heading {
+      position: absolute;
+      top: -1em;
+      font-size: 5em;
+      left: 1em;
+      color: #EFEFEF;
+      font-family: reross-quadratic, sans-serif;
+    }
+
+    h1 {
+      color: $orange;
+      font-family: reross-quadratic, sans-serif;
+      margin-bottom: 1em;
+    }
+  }
+
   .heading {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     h1 {
-      font-size: 4em;
+      font-size: 6em;
       margin-bottom: 1em;
       color: #CECECE;
     }
@@ -155,10 +178,17 @@
     }
   }
 
+  .fullwidth {
+    .ais-Hits {
+      width: 100% !important;
+    }
+  }
+
   .ais-Hits {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
+    width: 70%;
 
     &-list {
       position: relative;
@@ -209,9 +239,18 @@
 
 .ais-RefinementList {
 
+  &.theme-refinement {
+    display: none;
+  }
+
+  &.hide {
+    display: none;
+  }
+
   &-label {
     display: flex;
     align-items: center;
+
     &:hover {
       cursor: pointer;
     }
@@ -236,6 +275,7 @@
 
   &-item {
     margin: 20px 0;
+
     &--selected {
       .ais-RefinementList-labelText {
         &:after {
