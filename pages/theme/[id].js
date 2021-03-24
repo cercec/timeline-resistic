@@ -1,0 +1,35 @@
+import {fetchAllEvents, fetchAllImages, fetchAllThemes} from "../../utils/fetchers";
+import React from "react";
+import TimelineAlgolia from "../../Components/TimelineAlgolia";
+import Template from "../../Components/Template";
+
+export default function Theme({events, images}) {
+  return <Template classNamePage="timeline" pageName="Timeline">
+    <TimelineAlgolia events={events} images={images}/>
+  </Template>
+}
+
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  const themes = await fetchAllThemes()
+  // Get the paths we want to pre-render based on posts
+  const paths = themes.all_themes.data.map((theme) => ({
+    params: { id: theme.id.toString() },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const events = await fetchAllEvents()
+  const images = await fetchAllImages()
+
+  return {
+    props: {
+      events,
+      images,
+    },
+  }
+}

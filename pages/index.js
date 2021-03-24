@@ -1,6 +1,7 @@
 import Template from "../Components/Template";
 import React from "react";
 import Link from "next/link";
+import {fetchAllEvents, pushDataToAlgolia} from "../utils/fetchers";
 
 export default function Home() {
   return (
@@ -23,4 +24,15 @@ export default function Home() {
       </div>
     </Template>
   )
+}
+
+export async function getStaticProps() {
+  const events = await fetchAllEvents()
+
+  await pushDataToAlgolia(events.all_events.data)
+  return {
+    props: {
+      events,
+    },
+  }
 }
