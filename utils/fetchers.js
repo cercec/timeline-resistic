@@ -53,6 +53,44 @@ export async function fetchAllEvents() {
   }
 }
 
+export async function fetchEventsByTheme(theme_id) {
+  try {
+    // Get all events via Directus API
+    const res_events = await axiosDirectus.get(
+      "/items/evenements?sort=fin&fields=*.*"
+    )
+    const all_events = res_events.data
+
+    let keywords = await fetchAllKeywords();
+    let themes = await fetchAllThemes();
+    let events_by_theme = [];
+    all_events.data.map((event) => {
+      event.theme3.length > 0 && event.theme3.map((theme) => {
+        if (theme.themes3_id.toString() === theme_id) {
+          event.mots_cles.map((eventKeyword) => {
+            keywords.keywords.data.find((keyword) => {
+              if (keyword.id === eventKeyword.mots_cles_id) {
+                eventKeyword.mot_cle = keyword.mot_cle
+              }
+            })
+          });
+          let themes_event = []
+          event.theme3.map((el, i) => {
+            themes_event[i] = null !== themes.all_themes.data.find((e) => e.id === el.themes3_id).theme && themes.all_themes.data.find((e) => e.id === el.themes3_id).theme;
+          })
+          event.theme_name = themes_event;
+          event.objectID = event.id
+          events_by_theme.push(event)
+        }
+      })
+    });
+
+    return {events_by_theme}
+  } catch (e) {
+    console.log({message: e})
+  }
+}
+
 export async function fetchAllUsers() {
   try {
     // Get all users via Directus API

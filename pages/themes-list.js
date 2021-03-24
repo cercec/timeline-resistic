@@ -11,7 +11,7 @@ export default function ThemesList({images, themes}) {
     return <ul>
       {themes.all_themes.data.map((e, i) => {
         return <li onMouseEnter={() => setImageId(e.image)} image-id={e.image}
-                   key={`${e.theme}-${i}`}><Link href={`/timeline?theme-id=${e.id}`}>{e.theme}</Link></li>
+                   key={`${e.theme}-${i}`}><Link href={`/theme/${e.id}`}>{e.theme}</Link></li>
       })}
     </ul>
   }
