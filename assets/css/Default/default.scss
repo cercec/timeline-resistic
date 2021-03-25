@@ -38,16 +38,11 @@ a {
 }
 
 .container {
-  width: 1440px;
+  width: calc(100% - 40px);
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  @media (min-width: 1080px) and (max-width: 1280px) {
-    width: 1080px;
-  }
-  @media screen and (max-width: $tablet) {
-    width: calc(100% - 40px);
-  }
 }
 
 .logo {

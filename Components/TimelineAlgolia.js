@@ -16,8 +16,6 @@ const searchClient = algoliasearch(
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-// const index = searchClient.initIndex('resistic');
-
 export default function TimelineAlgolia({events, images, themes}) {
   const [drawer, showDrawer] = useState({show: false})
   const [filters, showFilters] = useState({show: false})
@@ -28,19 +26,6 @@ export default function TimelineAlgolia({events, images, themes}) {
     !years.includes(e.debut.substr(0, 4)) && years.push(e.debut.substr(0, 4))
     !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && years.push(e.fin.substr(0, 4))
   });
-
-  // index.search("Le contrôle d’Internet : cadre juridique et pratiques judiciaires", {
-  //   attributesToRetrieve: ['theme_name'],
-  // }).then(({hits}) => {
-  //   events.all_events.data.map((event) => {
-  //     hits.map((hit) => {
-  //       if (event.id.toString() === hit.objectID) {
-  //         console.log(event)
-  //         // return <ListItem hit={event}/>
-  //       }
-  //     });
-  //   });
-  // });
 
   const themeDescription = () => {
     return {__html: themes.all_themes.data[id].description}
@@ -109,7 +94,7 @@ export default function TimelineAlgolia({events, images, themes}) {
         {theme_name && <div className="timeline-themes-content">
           <div>
             <p className="upper-heading">Thèmes</p>
-            <h1>{themes.all_themes.data[id].theme}</h1>
+            <h1>{themes.all_themes.data.find((e) => e.id.toString() === id).theme}</h1>
             <div dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
