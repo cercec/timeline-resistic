@@ -8,7 +8,7 @@ export default function Drawer({description, data, event, image, title}) {
   return (
     <div className="drawer">
       <div className="drawer-content">
-        <i className="close" onClick={event} />
+        <i className="icon-close" onClick={event} />
         <img src={image && image}/>
         <h2>{title}</h2>
         <div className="drawer-description">{description}</div>

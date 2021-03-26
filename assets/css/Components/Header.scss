@@ -6,6 +6,12 @@ header {
   padding: 2em 0;
 
   nav {
+    display: flex;
+    align-items: center;
+    .search-icon {
+      margin-left: 2em;
+      cursor: pointer;
+    }
     ul:not(.home) {
       display: flex;
       position: relative;

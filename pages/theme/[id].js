@@ -4,7 +4,7 @@ import TimelineAlgolia from "../../Components/TimelineAlgolia";
 import Template from "../../Components/Template";
 
 export default function Theme({events, images, themes}) {
-  return <Template classNamePage="timeline" pageName="Timeline">
+  return <Template classNamePage="timeline theme-page" pageName="Thèmes">
     <TimelineAlgolia events={events} images={images} themes={themes}/>
   </Template>
 }
