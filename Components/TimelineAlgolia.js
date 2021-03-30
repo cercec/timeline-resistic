@@ -2,7 +2,7 @@ import {
   Hits,
   InstantSearch,
   Configure,
-  RefinementList
+  RefinementList, SearchBox
 } from 'react-instantsearch-dom';
 import React, {useState} from "react";
 import algoliasearch from "algoliasearch/lite";
@@ -16,58 +16,50 @@ const searchClient = algoliasearch(
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-// const index = searchClient.initIndex('resistic');
-
-export default function TimelineAlgolia({events, images, themes}) {
-  const [drawer, showDrawer] = useState({show: false})
+export default function TimelineAlgolia({events, images, publications, searchResults, themes}) {
+  const [drawer, setDrawer] = useState({show: false, publications: []})
   const [filters, showFilters] = useState({show: false})
   const router = useRouter()
-  const {id, theme_name} = router.query
+  const {theme_id, theme_name} = router.query
   let years = [];
   events.all_events.data.map((e) => {
     !years.includes(e.debut.substr(0, 4)) && years.push(e.debut.substr(0, 4))
     !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && years.push(e.fin.substr(0, 4))
   });
 
-  // index.search("Le contrôle d’Internet : cadre juridique et pratiques judiciaires", {
-  //   attributesToRetrieve: ['theme_name'],
-  // }).then(({hits}) => {
-  //   events.all_events.data.map((event) => {
-  //     hits.map((hit) => {
-  //       if (event.id.toString() === hit.objectID) {
-  //         console.log(event)
-  //         // return <ListItem hit={event}/>
-  //       }
-  //     });
-  //   });
-  // });
-
   const themeDescription = () => {
-    return {__html: themes.all_themes.data[id].description}
+    return {__html: themes.all_themes.data.find((e) => e.id.toString() === theme_id).description}
   }
 
   const Hit = ({hit}) => {
+    let date = <div className={`hit-item__date${hit.fin !== null && hit.fin !== hit.debut ? ' period' : ''}`}>
+      {!searchResults ? <><p>{dateFormatter(hit.debut)}</p>
+        {hit.fin !== null && hit.fin !== hit.debut && <p><span>-</span><br/>{dateFormatter(hit.fin)}</p>}</> : <>
+        <span>{dateFormatter(hit.debut)}</span>
+        {hit.fin !== null && hit.fin !== hit.debut && <span><span> - </span>{dateFormatter(hit.fin)}</span>}</>}
+    </div>
     let image = hit.image !== null && images.files.data.find((image) => hit.image.id === image.id);
-    return <div id={hit.debut.substr(0, 4)} className="timeline-item" onClick={() => {
-        showDrawer({
-          show: !drawer.show,
-          id: hit.id,
-          image: image && image.data.full_url,
-          drawer_data: hit
-        })
-      }}>
-        <div className="timeline-item__content">
-          <div className={`timeline-item__date${hit.fin !== null && hit.fin !== hit.debut ? ' period' : ''}`}>
-            <p>{dateFormatter(hit.debut)}</p>
-            {hit.fin !== null && hit.fin !== hit.debut && <p><span>-</span><br/>{dateFormatter(hit.fin)}</p>}
-          </div>
-          <h3 className="timeline-item__title">{hit.titre}</h3>
-          <p>
-            {`${hit.description.substr(0, 100)}...`}
-          </p>
-        </div>
-        <img className="timeline-item__image" src={image ? image.data.thumbnails[3].url : ''} alt=""/>
+    return <div id={hit.debut.substr(0, 4)} className={`${searchResults ? 'results-item' : 'timeline-item'}`}
+                onClick={() => {
+                  setDrawer({
+                    show: !drawer.show,
+                    id: hit.id,
+                    image: image && image.data.full_url,
+                    drawer_data: hit,
+                    autres_publications: hit.autres_publications.find((e) => e) !== undefined && hit.autres_publications.find((e) => e).evenements_id
+                  })
+                }}>
+      <div className="hit-item__content">
+        {!searchResults && date}
+        <h3 className="hit-item__title">{hit.titre}</h3>
+        {searchResults && date}
+        <p className="hit-item__description">
+          {`${hit.description.substr(0, 100)}...`}
+        </p>
+        {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
+      {!searchResults && <img className="hit-item__image" src={image ? image.data.thumbnails[3].url : ''} alt=""/>}
+    </div>
   };
 
   return (
@@ -82,7 +74,13 @@ export default function TimelineAlgolia({events, images, themes}) {
       />}
 
       <Configure hitsPerPage={events.all_events.data.length}/>
-      <div className="heading">
+      {searchResults && <div>
+        <SearchBox reset={<i className="icon-close"></i>} autoFocus showLoadingIndicator translations={{
+          placeholder: 'Affinez votre recherche...',
+        }}/>
+        <h1>Résultats de recherche</h1>
+      </div>}
+      {!searchResults && <div className="heading">
         {!theme_name && <h1>Tous les événements</h1>}
         <div className="filters">
           <div className={`button${filters.show ? ' active' : ''}`} onClick={() => {
@@ -103,17 +101,17 @@ export default function TimelineAlgolia({events, images, themes}) {
             }
           />
         </div>
-      </div>
+      </div>}
 
       <div className={`timeline-wrapper ${theme_name ? '' : 'fullwidth'}`}>
         {theme_name && <div className="timeline-themes-content">
           <div>
             <p className="upper-heading">Thèmes</p>
-            <h1>{themes.all_themes.data[id].theme}</h1>
+            <h1>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
             <div dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
-        {!theme_name && <ul className="timeline-years">
+        {!theme_name && !searchResults && <ul className="timeline-years">
           {years.sort((a, b) => b - a).map((e) => {
             return <li key={e}><a href={`#${e}`}>{e}</a></li>
           })}
@@ -122,11 +120,13 @@ export default function TimelineAlgolia({events, images, themes}) {
       </div>
       {drawer && drawer.id && (
         <Drawer
+          publications={publications}
+          evenements_id={drawer.autres_publications}
           data={drawer.drawer_data}
           image={drawer.image}
           description={drawer.drawer_data.description}
           title={drawer.drawer_data.titre}
-          event={() => showDrawer({
+          event={() => setDrawer({
             show: !drawer.show,
           })}
         />

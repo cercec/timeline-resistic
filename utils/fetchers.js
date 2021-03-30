@@ -67,16 +67,29 @@ export async function fetchAllUsers() {
   }
 }
 
-export async function fetchAllContent() {
+export async function fetchAllPages() {
   try {
-    // Get content pages via Directus API
-    const res_content = await axiosDirectus.get(
-      "/items/contenu"
+    // Get pages via Directus API
+    const res_pages = await axiosDirectus.get(
+      "/items/pages"
     )
 
-    const all_content = res_content.data
+    const all_pages = res_pages.data
+    return {all_pages}
+  } catch (e) {
+    console.log({message: e})
+  }
+}
 
-    return {all_content}
+export async function fetchAllPublications() {
+  try {
+    // Get publications via Directus API
+    const res_publications = await axiosDirectus.get(
+      "/items/publications?fields=*.*"
+    )
+
+    const all_publications = res_publications.data
+    return {all_publications}
   } catch (e) {
     console.log({message: e})
   }

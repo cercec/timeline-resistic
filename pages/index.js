@@ -14,8 +14,8 @@ export default function Home() {
         </div>
         <div className="home-menu">
           <ul>
-            <li><Link href="/timeline">Timeline</Link></li>
-            <li><Link href="/themes">Thèmes</Link></li>
+            <li><Link href="/resistic/timeline">Timeline</Link></li>
+            <li><Link href="/resistic/themes">Thèmes</Link></li>
             <li>Publications</li>
             <li>Dataviz</li>
             <li>Le Projet</li>
