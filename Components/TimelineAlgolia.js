@@ -16,11 +16,11 @@ const searchClient = algoliasearch(
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-export default function TimelineAlgolia({events, images, searchResults, themes}) {
-  const [drawer, showDrawer] = useState({show: false})
+export default function TimelineAlgolia({events, images, publications, searchResults, themes}) {
+  const [drawer, setDrawer] = useState({show: false, publications: []})
   const [filters, showFilters] = useState({show: false})
   const router = useRouter()
-  const {id, theme_name} = router.query
+  const {theme_id, theme_name} = router.query
   let years = [];
   events.all_events.data.map((e) => {
     !years.includes(e.debut.substr(0, 4)) && years.push(e.debut.substr(0, 4))
@@ -28,7 +28,7 @@ export default function TimelineAlgolia({events, images, searchResults, themes})
   });
 
   const themeDescription = () => {
-    return {__html: themes.all_themes.data[id].description}
+    return {__html: themes.all_themes.data.find((e) => e.id.toString() === theme_id).description}
   }
 
   const Hit = ({hit}) => {
@@ -41,11 +41,12 @@ export default function TimelineAlgolia({events, images, searchResults, themes})
     let image = hit.image !== null && images.files.data.find((image) => hit.image.id === image.id);
     return <div id={hit.debut.substr(0, 4)} className={`${searchResults ? 'results-item' : 'timeline-item'}`}
                 onClick={() => {
-                  showDrawer({
+                  setDrawer({
                     show: !drawer.show,
                     id: hit.id,
                     image: image && image.data.full_url,
-                    drawer_data: hit
+                    drawer_data: hit,
+                    autres_publications: hit.autres_publications.find((e) => e) !== undefined && hit.autres_publications.find((e) => e).evenements_id
                   })
                 }}>
       <div className="hit-item__content">
@@ -106,7 +107,7 @@ export default function TimelineAlgolia({events, images, searchResults, themes})
         {theme_name && <div className="timeline-themes-content">
           <div>
             <p className="upper-heading">Thèmes</p>
-            <h1>{themes.all_themes.data.find((e) => e.id.toString() === id).theme}</h1>
+            <h1>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
             <div dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
@@ -119,11 +120,13 @@ export default function TimelineAlgolia({events, images, searchResults, themes})
       </div>
       {drawer && drawer.id && (
         <Drawer
+          publications={publications}
+          evenements_id={drawer.autres_publications}
           data={drawer.drawer_data}
           image={drawer.image}
           description={drawer.drawer_data.description}
           title={drawer.drawer_data.titre}
-          event={() => showDrawer({
+          event={() => setDrawer({
             show: !drawer.show,
           })}
         />

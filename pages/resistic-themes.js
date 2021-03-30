@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {fetchAllImages, fetchAllThemes} from "../utils/fetchers";
 import Link from "next/link";
 
-export default function ThemesList({images, themes}) {
+export default function ResisticThemes({images, themes}) {
 
   const [imageId, setImageId] = useState(false);
   let src = imageId !== null && images.files.data.find((image) => imageId === image.id);

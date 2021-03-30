@@ -1,4 +1,4 @@
-.search-results {
+.search-results, .drawer-publication {
   .ais-SearchBox {
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
   }
   .ais-Hits-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 50% 50%;
     .ais-Hits-item {
       margin: 5px 5px 2em;
     }
@@ -58,6 +58,11 @@
     &__content {
       border-left: 4px solid #000;
       padding-left: 20px;
+    }
+
+    &__author {
+      color: $orange;
+      margin-bottom: 20px;
     }
 
     &__date {

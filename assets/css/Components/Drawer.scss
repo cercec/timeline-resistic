@@ -18,6 +18,14 @@
     overflow: scroll;
   }
 
+  &-button {
+    display: flex;
+    justify-content: flex-end;
+    .button {
+      margin-top: 30px;
+    }
+  }
+
   .icon-close {
     position: absolute;
     right: 32px;

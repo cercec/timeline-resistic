@@ -11,8 +11,8 @@ export default function Template({children, classNamePage, pageName}) {
       return;
     } else {
       return <ul>
-        <li><Link href="/timeline">Timeline</Link></li>
-        <li><Link href="/themes">Thèmes</Link></li>
+        <li><Link href="/resistic/timeline">Timeline</Link></li>
+        <li><Link href="/resistic/themes">Thèmes</Link></li>
         <li><Link href="#">Publications</Link></li>
         <li><Link href="#">Carte</Link></li>
         <li><Link href="#">Le Projet</Link></li>
@@ -42,7 +42,7 @@ export default function Template({children, classNamePage, pageName}) {
         {children}
         <footer>
           <ul>
-            <li>Mentions légales</li>
+            <li><Link href="/resistic/mentions-legales">Mentions légales</Link></li>
           </ul>
         </footer>
       </div>
