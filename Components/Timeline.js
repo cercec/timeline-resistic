@@ -16,7 +16,7 @@ const searchClient = algoliasearch(
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-export default function TimelineAlgolia({datas, images, publications, searchResults, themes}) {
+export default function Timeline({datas, images, publications, searchResults, themes}) {
   const [drawer, setDrawer] = useState({show: false, publications: []})
   const [filters, showFilters] = useState({show: false})
   const router = useRouter()

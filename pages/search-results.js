@@ -5,13 +5,13 @@ import {Configure, Hits, InstantSearch, SearchBox} from "react-instantsearch-dom
 import algoliasearch from "algoliasearch/lite";
 import {dateFormatter} from "../utils/dateFormat";
 import Drawer from "../Components/Drawer";
-import TimelineAlgolia from "../Components/TimelineAlgolia";
+import Timeline from "../Components/Timeline";
 import {fetchAllEvents, fetchAllImages} from "../utils/fetchers";
 
 export default function SearchResults({events, images}) {
   return (
     <Template classNamePage="search-results" pageName="Résultats de recherche">
-      <TimelineAlgolia datas={events.all_events.data} images={images} searchResults/>
+      <Timeline datas={events.all_events.data} images={images} searchResults/>
     </Template>
   )
 }

@@ -1,5 +1,5 @@
 import Template from "../Components/Template";
-import TimelineAlgolia from "../Components/TimelineAlgolia";
+import Timeline from "../Components/Timeline";
 import {fetchAllPublications} from "../utils/fetchers";
 import React from "react";
 

@@ -1,11 +1,11 @@
 import {fetchAllEvents, fetchAllImages, fetchAllPublications, fetchAllThemes} from "../../utils/fetchers";
 import React from "react";
-import TimelineAlgolia from "../../Components/TimelineAlgolia";
+import Timeline from "../../Components/Timeline";
 import Template from "../../Components/Template";
 
 export default function Theme({events, images, publications, themes}) {
   return <Template classNamePage="timeline theme-page" pageName="Thèmes">
-    <TimelineAlgolia datas={events.all_events.data} images={images} publications={publications.all_publications.data} themes={themes}/>
+    <Timeline datas={events.all_events.data} images={images} publications={publications.all_publications.data} themes={themes}/>
   </Template>
 }
 

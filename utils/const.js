@@ -5,11 +5,15 @@ export const MENU_ITEMS = [
   },
   {
     name: 'Thèmes',
-    url: '/resistic/themes'
+    url: '/resistic/themes',
   },
   {
     name: 'Publications',
     url: '/publications'
+  },
+  {
+    name: 'Dataviz',
+    url: '/data-vizualisation'
   }
 ];
 
