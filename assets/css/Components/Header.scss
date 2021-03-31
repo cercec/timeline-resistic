@@ -72,6 +72,12 @@ header {
             }
           }
         }
+        &.active a {
+          &:after {
+            background: $orange;
+            transform: scale(1.4);
+          }
+        }
       }
     }
 

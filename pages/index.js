@@ -2,6 +2,7 @@ import Template from "../Components/Template";
 import React from "react";
 import Link from "next/link";
 import {fetchAllEvents, pushDataToAlgolia} from "../utils/fetchers";
+import Menu from "../Components/Menu";
 
 export default function Home() {
   return (
@@ -13,13 +14,7 @@ export default function Home() {
           <a href="#" className="button">Lire plus</a>
         </div>
         <div className="home-menu">
-          <ul>
-            <li><Link href="/resistic/timeline">Timeline</Link></li>
-            <li><Link href="/resistic/themes">Thèmes</Link></li>
-            <li>Publications</li>
-            <li>Dataviz</li>
-            <li>Le Projet</li>
-          </ul>
+          <Menu/>
         </div>
       </div>
     </Template>

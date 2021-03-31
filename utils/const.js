@@ -1,27 +1,25 @@
 export const MENU_ITEMS = [
   {
     name: 'Timeline',
-    url: '/'
+    url: '/resistic/timeline',
+    alias: ["/resistic-timeline", "/resistic/timeline"]
   },
   {
-    name: 'Présentation du projet',
-    url: '/presentation'
+    name: 'Thèmes',
+    url: '/resistic/themes',
+    alias: ["/resistic-themes", "/resistic/themes", "/theme/[theme_id]"]
   },
   {
-    name: 'Carte des événements',
-    url: '/carte'
+    name: 'Publications',
+    url: '/publications'
   },
   {
-    name: 'Équipe',
-    url: '/equipe'
+    name: 'Dataviz',
+    url: '/data-vizualisation'
   },
   {
-    name: 'Mentions légales',
-    url: '/legals'
-  },
-  {
-    name: 'Protection des données',
-    url: '/grpd'
+    name: 'Le projet',
+    url: '/resistic/le-projet'
   }
 ];
 

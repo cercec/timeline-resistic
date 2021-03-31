@@ -3,7 +3,6 @@ import DrawerPublications from "./DrawerPublications";
 
 export default function Drawer({publications, description, data, event, image, evenements_id, title}) {
   const [drawerPublications, showDrawerPublications] = useState({show: false, publications: []})
-
   const keywords_event = data.mots_cles && data.mots_cles.map((word) => {
     return <span key={`drawer-${word.id}`}>#{word.mot_cle}</span>
   })

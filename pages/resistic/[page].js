@@ -15,7 +15,7 @@ export default function Page({pages}) {
 
   return (
     <Template classNamePage="themes" pageName={page_data.titre}>
-      {page !== 'mentions-legales' && <div className="themes-wrapper">
+      {page !== 'mentions-legales' && page !== 'le-projet' ? <div className="themes-wrapper">
         <div className="images">
           <img src="/themes.png" alt=""/>
           <img src="/themes.png" alt=""/>
@@ -26,9 +26,14 @@ export default function Page({pages}) {
         <div className="intro">
           <h1>{page_data.titre}</h1>
           <div dangerouslySetInnerHTML={pageDescription()}/>
-          <Link href={`/resistic-${page}`}><a className="button full">Voir {page_data.titre === 'Timeline' ? 'la timeline' : 'les thèmes'}</a></Link>
+          <Link href={`/resistic-${page}`}><a
+            className="button full">Voir {page_data.titre === 'Timeline' ? 'la timeline' : 'les thèmes'}</a></Link>
         </div>
-      </div>  }
+      </div> : <div className="intro">
+        <h1 style={{ fontSize: '4em', color: '#CECECE'}}>{page_data.titre}</h1>
+        <div dangerouslySetInnerHTML={pageDescription()}/>
+      </div>
+      }
     </Template>
   )
 }
@@ -38,12 +43,12 @@ export async function getStaticPaths() {
   const pages = await fetchAllPages()
   // Get the paths we want to pre-render based on posts
   const paths = pages.all_pages.data.map((page) => ({
-    params: { id: page.id.toString(), page: slugify(page.titre) },
+    params: {id: page.id.toString(), page: slugify(page.titre)},
   }))
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
+  return {paths, fallback: false}
 }
 
 export async function getStaticProps() {

@@ -24,6 +24,11 @@ h1, h2, h3, h4 {
   font-style: normal;
 }
 
+h1 {
+  font-size: 4em;
+  color: #CECECE;
+}
+
 a {
   &.button {
     &:hover {

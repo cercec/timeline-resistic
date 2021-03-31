@@ -16,13 +16,13 @@ const searchClient = algoliasearch(
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-export default function TimelineAlgolia({events, images, publications, searchResults, themes}) {
+export default function Timeline({datas, images, publications, searchResults, themes}) {
   const [drawer, setDrawer] = useState({show: false, publications: []})
   const [filters, showFilters] = useState({show: false})
   const router = useRouter()
   const {theme_id, theme_name} = router.query
   let years = [];
-  events.all_events.data.map((e) => {
+  datas.map((e) => {
     !years.includes(e.debut.substr(0, 4)) && years.push(e.debut.substr(0, 4))
     !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && years.push(e.fin.substr(0, 4))
   });
@@ -73,7 +73,7 @@ export default function TimelineAlgolia({events, images, publications, searchRes
         defaultRefinement={[theme_name]}
       />}
 
-      <Configure hitsPerPage={events.all_events.data.length}/>
+      <Configure hitsPerPage={datas.length}/>
       {searchResults && <div>
         <SearchBox reset={<i className="icon-close"></i>} autoFocus showLoadingIndicator translations={{
           placeholder: 'Affinez votre recherche...',
@@ -107,7 +107,7 @@ export default function TimelineAlgolia({events, images, publications, searchRes
         {theme_name && <div className="timeline-themes-content">
           <div>
             <p className="upper-heading">Thèmes</p>
-            <h1>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
+            <h1 style={{ marginBottom: '1em'}}>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
             <div dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
