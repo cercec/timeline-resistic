@@ -6,7 +6,7 @@ import {fetchAllEvents, fetchAllImages, fetchAllPublications} from "../utils/fet
 export default function ResisticTimeline({events, images, publications}) {
   return (
     <Template classNamePage="timeline" pageName="ResisticTimeline">
-      <TimelineAlgolia events={events} images={images} publications={publications.all_publications.data}/>
+      <TimelineAlgolia datas={events.all_events.data} images={images} publications={publications.all_publications.data}/>
     </Template>
   )
 }

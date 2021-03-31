@@ -1,27 +1,15 @@
 export const MENU_ITEMS = [
   {
     name: 'Timeline',
-    url: '/'
+    url: '/resistic/timeline'
   },
   {
-    name: 'Présentation du projet',
-    url: '/presentation'
+    name: 'Thèmes',
+    url: '/resistic/themes'
   },
   {
-    name: 'Carte des événements',
-    url: '/carte'
-  },
-  {
-    name: 'Équipe',
-    url: '/equipe'
-  },
-  {
-    name: 'Mentions légales',
-    url: '/legals'
-  },
-  {
-    name: 'Protection des données',
-    url: '/grpd'
+    name: 'Publications',
+    url: '/publications'
   }
 ];
 

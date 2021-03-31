@@ -11,7 +11,7 @@ import {fetchAllEvents, fetchAllImages} from "../utils/fetchers";
 export default function SearchResults({events, images}) {
   return (
     <Template classNamePage="search-results" pageName="Résultats de recherche">
-      <TimelineAlgolia events={events} images={images} searchResults/>
+      <TimelineAlgolia datas={events.all_events.data} images={images} searchResults/>
     </Template>
   )
 }
