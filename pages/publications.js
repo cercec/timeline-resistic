@@ -4,7 +4,6 @@ import {fetchAllPublications} from "../utils/fetchers";
 import React from "react";
 
 export default function SearchResults({publications}) {
-  console.log(publications)
   const publication_list = publications.all_publications.data.map((el) => {
     return <li className="hit-item">
       <div className="hit-item__content">

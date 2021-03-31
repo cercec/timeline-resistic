@@ -1,11 +1,13 @@
 export const MENU_ITEMS = [
   {
     name: 'Timeline',
-    url: '/resistic/timeline'
+    url: '/resistic/timeline',
+    alias: ["/resistic-timeline", "/resistic/timeline"]
   },
   {
     name: 'Thèmes',
     url: '/resistic/themes',
+    alias: ["/resistic-themes", "/resistic/themes", "/theme/[theme_id]"]
   },
   {
     name: 'Publications',
@@ -14,6 +16,10 @@ export const MENU_ITEMS = [
   {
     name: 'Dataviz',
     url: '/data-vizualisation'
+  },
+  {
+    name: 'Le projet',
+    url: '/resistic/le-projet'
   }
 ];
 

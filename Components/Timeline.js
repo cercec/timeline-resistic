@@ -107,7 +107,7 @@ export default function Timeline({datas, images, publications, searchResults, th
         {theme_name && <div className="timeline-themes-content">
           <div>
             <p className="upper-heading">Thèmes</p>
-            <h1>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
+            <h1 style={{ marginBottom: '1em'}}>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
             <div dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
