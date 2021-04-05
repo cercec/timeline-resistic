@@ -2,7 +2,7 @@ import {
   Hits,
   InstantSearch,
   Configure,
-  RefinementList, SearchBox
+  RefinementList, SearchBox, connectRefinementList
 } from 'react-instantsearch-dom';
 import React, {useState} from "react";
 import algoliasearch from "algoliasearch/lite";
@@ -10,25 +10,26 @@ import {dateFormatter} from "../utils/dateFormat";
 import Drawer from "../Components/Drawer";
 import {capitalize} from "../utils/capitalize";
 import {useRouter} from "next/router";
+import {switchColors} from "../utils/switchColors";
 
 const searchClient = algoliasearch(
   '9CIFY5KJJB',
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-export default function Timeline({datas, images, publications, searchResults, themes}) {
-  const [drawer, setDrawer] = useState({show: false, publications: []})
+export default function Timeline({datas, images, bibliographies, searchResults, enquetes}) {
+  const [drawer, setDrawer] = useState({show: false, bibliographies: []})
   const [filters, showFilters] = useState({show: false})
   const router = useRouter()
-  const {theme_id, theme_name} = router.query
+  const {enquetes_id, enquetes_name} = router.query
   let years = [];
   datas.map((e) => {
-    !years.includes(e.debut.substr(0, 4)) && years.push(e.debut.substr(0, 4))
-    !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && years.push(e.fin.substr(0, 4))
+    !years.includes(e.debut.substr(0, 4)) && e.debut.substr(0, 4) >= 2010 && years.push(e.debut.substr(0, 4))
+    !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && e.fin.substr(0, 4) >= 2010 && years.push(e.fin.substr(0, 4))
   });
 
   const themeDescription = () => {
-    return {__html: themes.all_themes.data.find((e) => e.id.toString() === theme_id).description}
+    return {__html: enquetes.all_themes.data.find((e) => e.id.toString() === enquetes_id).description}
   }
 
   const Hit = ({hit}) => {
@@ -46,7 +47,7 @@ export default function Timeline({datas, images, publications, searchResults, th
                     id: hit.id,
                     image: image && image.data.full_url,
                     drawer_data: hit,
-                    autres_publications: hit.autres_publications.find((e) => e) !== undefined && hit.autres_publications.find((e) => e).evenements_id
+                    bibliographies: hit.bibliographie && hit.bibliographie.find((e) => e) !== undefined && hit.bibliographie.find((e) => e).evenements_id
                   })
                 }}>
       <div className="hit-item__content">
@@ -56,21 +57,55 @@ export default function Timeline({datas, images, publications, searchResults, th
         <p className="hit-item__description">
           {`${hit.description.substr(0, 100)}...`}
         </p>
+        <div className="tooltips-categories">
+          {hit.categorie.map((category, i) => {
+            if (category !== "") {
+              let customColor = switchColors(category)
+              return <div key={category + '-' + i} className="hit-item__category">
+                <span className="hit-item__category__tooltiptext">{capitalize(category).replace(/-/g, " ")}</span>
+                <span className="hit-item__category__tooltip" style={{'--category': customColor}}/>
+              </div>
+            }
+          })}
+        </div>
         {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
       {!searchResults && <img className="hit-item__image" src={image ? image.data.thumbnails[3].url : ''} alt=""/>}
     </div>
   };
 
+  const CategoriesRefinementList = ({items, refine, createURL}) => (
+    <ul className={`refinement-list categories ${filters.show === false ? 'hide' : ''}`}>
+      {items && items.map(item => {
+        return <li className={`refinement-list-item ${item.isRefined ? 'refinement-list-item--selected' : ''}`}
+                   key={item.label}>
+          <a
+            className="refinement-list-label"
+            href={createURL(item.value)}
+            onClick={event => {
+              event.preventDefault();
+              refine(item.value);
+            }}
+          >
+            <span className="refinement-list-labelText"
+                  style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span>
+          </a>
+        </li>
+      })}
+    </ul>
+  );
+
+  const CustomRefinementList = connectRefinementList(CategoriesRefinementList);
+
   return (
     <InstantSearch
       indexName="resistic"
       searchClient={searchClient}
     >
-      {theme_name && <RefinementList
+      {enquetes_name && <RefinementList
         attribute="theme_name"
         className="theme-refinement"
-        defaultRefinement={[theme_name]}
+        defaultRefinement={[enquetes_name]}
       />}
 
       <Configure hitsPerPage={datas.length}/>
@@ -81,7 +116,7 @@ export default function Timeline({datas, images, publications, searchResults, th
         <h1>Résultats de recherche</h1>
       </div>}
       {!searchResults && <div className="heading">
-        {!theme_name && <h1>Tous les événements</h1>}
+        {!enquetes_name && <h1>Tous les événements</h1>}
         <div className="filters">
           <div className={`button${filters.show ? ' active' : ''}`} onClick={() => {
             showFilters({
@@ -90,38 +125,32 @@ export default function Timeline({datas, images, publications, searchResults, th
           }}>
             Filtres
           </div>
-          <RefinementList
+          <CustomRefinementList
             attribute="categorie"
-            className={`categories ${filters.show === false ? 'hide' : ''}`}
-            transformItems={items =>
-              items.map(item => ({
-                ...item,
-                label: capitalize(item.label.replace(/-/g, " ")),
-              }))
-            }
           />
         </div>
       </div>}
 
-      <div className={`timeline-wrapper ${theme_name ? '' : 'fullwidth'}`}>
-        {theme_name && <div className="timeline-themes-content">
-          <div>
-            <p className="upper-heading">Thèmes</p>
-            <h1 style={{ marginBottom: '1em'}}>{themes.all_themes.data.find((e) => e.id.toString() === theme_id).theme}</h1>
+      <div className={`timeline-wrapper ${enquetes_name ? '' : 'fullwidth'}`}>
+        {enquetes_name && <div className="timeline-themes-content">
+          <div className="timeline-themes-content-wrapper">
+            <p className="upper-heading">Enquêtes</p>
+            <h1
+              style={{marginBottom: '1em'}}>{enquetes.all_themes.data.find((e) => e.id.toString() === enquetes_id).theme}</h1>
             <div dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
-        {!theme_name && !searchResults && <ul className="timeline-years">
+        {!enquetes_name && !searchResults && <ul className="timeline-years">
           {years.sort((a, b) => b - a).map((e) => {
-            return <li key={e}><a href={`#${e}`}>{e}</a></li>
+            return <li key={e}><a href={`#${e}`}>{e === "2010" ? "Avant 2010" : e}</a></li>
           })}
         </ul>}
         <Hits hitComponent={Hit}/>
       </div>
       {drawer && drawer.id && (
         <Drawer
-          publications={publications}
-          evenements_id={drawer.autres_publications}
+          bibliographies={bibliographies}
+          evenements_id={drawer.bibliographies}
           data={drawer.drawer_data}
           image={drawer.image}
           description={drawer.drawer_data.description}

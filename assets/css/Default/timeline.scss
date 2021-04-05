@@ -2,6 +2,9 @@
 
   &-wrapper {
     display: flex;
+    @media screen and (max-width: $phone) {
+     flex-direction: column;
+    }
   }
 
   &-years {
@@ -9,6 +12,10 @@
     position: sticky;
     top: 20px;
     align-self: flex-start;
+    width: 170px;
+    @media screen and (max-width: $phone) {
+      display: none;
+    }
 
     &:before {
       content: "";
@@ -58,22 +65,33 @@
   &-themes-content {
     width: 30%;
     background: #EFEFEF;
-    padding: 40px 30px;
     height: fit-content;
     position: relative;
+    @media screen and (max-width: $phone) {
+      width: 100%;
+      margin-top: 50px;
+    }
+
+    &-wrapper {
+      padding: 40px 30px;
+    }
 
     .upper-heading {
       position: absolute;
-      top: -1em;
+      top: -2em;
       font-size: 5em;
       left: 1em;
       color: #EFEFEF;
-      font-family: reross-quadratic, sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      @media screen and (max-width: $phone) {
+        left: 0;
+        font-size: 4em;
+      }
     }
 
     h1 {
       color: $orange;
-      font-family: reross-quadratic, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       margin-bottom: 1em;
     }
   }
@@ -86,16 +104,27 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media screen and (max-width: $phone) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
     h1 {
       font-size: 6em;
       margin-bottom: 1em;
       color: #CECECE;
+      @media screen and (max-width: $phone) {
+        font-size: 3em;
+        margin: 0;
+      }
     }
 
     .filters {
       position: relative;
       width: 300px;
+      @media screen and (max-width: $phone) {
+        width: 100%;
+      }
 
       .button {
         background: #EFEFEF;
@@ -106,6 +135,11 @@
         align-items: center;
         justify-content: center;
         float: right;
+
+        @media screen and (max-width: $phone) {
+          float: left;
+          margin: 1em;
+        }
 
         &.active {
           background: #AEAEAE;
@@ -126,6 +160,13 @@
         background: #D3D3D3;
         width: 100%;
         padding: 25px 40px;
+        @media screen and (max-width: $phone) {
+          display: flex;
+          flex-direction: column;
+          position: initial;
+          padding: 0;
+          margin-bottom: 20px;
+        }
       }
     }
   }
@@ -133,14 +174,23 @@
   .hit-item__date {
     position: absolute;
     right: calc(100% + 70px);
-    top: 66px;
+    top: 47px;
     width: 300px;
     text-align: right;
     text-transform: uppercase;
-    font-family: reross-quadratic;
+    font-family: 'Montserrat';
+    @media screen and (max-width: $phone) {
+      position: relative;
+      right: auto;
+      top: auto;
+      text-align: left;
+    }
 
     &.period {
       top: 40px;
+      @media screen and (max-width: $phone) {
+        top: auto;
+      }
     }
   }
 
@@ -151,7 +201,15 @@
     width: 100%;
     background: #EFEFEF;
     left: 40px;
-    height: 160px;
+    height: 225px;
+    @media screen and (max-width: $phone) {
+      height: 100%;
+      padding: 20px;
+      flex-direction: column;
+      width: calc(100% - 80px);
+      background: #EFEFEF;
+      left: 20px;
+    }
 
     &:before {
       content: "";
@@ -161,8 +219,11 @@
       width: 0;
       height: 0;
       border-right: 25px solid #EFEFEF;
-      border-top: 80px solid transparent;
-      border-bottom: 80px solid transparent;
+      border-top: 111px solid transparent;
+      border-bottom: 111px solid transparent;
+      @media screen and (max-width: $phone) {
+        display: none;
+      }
     }
   }
 
@@ -171,11 +232,18 @@
     align-items: flex-start;
     justify-content: flex-end;
     width: 70%;
+    @media screen and (max-width: $phone) {
+      width: 100%;
+    }
 
     &-list {
       position: relative;
       width: 70%;
       right: 40px;
+      @media screen and (max-width: $phone) {
+        width: 100%;
+        right: auto;
+      }
 
       &:before {
         content: "";
@@ -223,13 +291,15 @@
       width: 100% !important;
     }
   }
+
+  .tooltips-categories {
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+  }
 }
 
-.ais-RefinementList {
-
-  &.theme-refinement {
-    display: none;
-  }
+.refinement-list {
 
   &.hide {
     display: none;
@@ -238,6 +308,11 @@
   &-label {
     display: flex;
     align-items: center;
+    @media screen and (max-width: $phone) {
+      position: relative;
+      left: 40px;
+      width: 300px;
+    }
 
     &:hover {
       cursor: pointer;
@@ -263,13 +338,16 @@
 
   &-item {
     margin: 20px 0;
+    @media screen and (max-width: $phone) {
+      margin: 10px 0;
+    }
 
     &--selected {
-      .ais-RefinementList-labelText {
+      .refinement-list-labelText {
         &:after {
           content: "";
           display: block;
-          background: $orange;
+          background: var(--category);
           position: absolute;
           left: -14px;
           top: 6px;
@@ -284,4 +362,8 @@
   &-count {
     display: none;
   }
+}
+
+.theme-refinement {
+  display: none;
 }

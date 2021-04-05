@@ -5,15 +5,89 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    @media screen and (max-width: $phone) {
+      width: 100%;
+      .drawer-bibliographies & {
+        width: 85%;
+      }
+    }
+  }
+
+  &__description {
+    word-break: break-all;
   }
 
   &__title {
-    font-family: reross-quadratic;
+    font-family: 'Montserrat';
     font-size: 23px;
     color: $orange;
   }
 
+  &__category {
+    position: relative;
+    margin-right: 1em;
+    &__tooltip {
+      &:before {
+        content: "";
+        display: block;
+        border: 2px solid #000;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+      }
+      &:after {
+        content: "";
+        display: block;
+        background: var(--category);
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+      }
+    }
+
+    &:hover {
+      .hit-item__category__tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    &__tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+    }
+  }
+
   &__image {
     height: 100%;
+    @media screen and (max-width: $phone) {
+      width: 100%;
+      margin-top: 20px;
+    }
   }
 }

@@ -81,15 +81,15 @@ export async function fetchAllPages() {
   }
 }
 
-export async function fetchAllPublications() {
+export async function fetchAllBibliographies() {
   try {
-    // Get publications via Directus API
-    const res_publications = await axiosDirectus.get(
-      "/items/publications?fields=*.*"
+    // Get bibliographies via Directus API
+    const res_bibliographies = await axiosDirectus.get(
+      "/items/bibliographies?fields=*.*"
     )
 
-    const all_publications = res_publications.data
-    return {all_publications}
+    const all_bibliographies = res_bibliographies.data
+    return {all_bibliographies}
   } catch (e) {
     console.log({message: e})
   }

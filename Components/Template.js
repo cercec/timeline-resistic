@@ -1,15 +1,25 @@
 import Head from "next/head";
 import Link from "next/link";
 import Menu from "./Menu";
+import {useEffect, useState} from "react";
+import Fab from "@material-ui/core/Fab";
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 export default function Template({children, classNamePage, menuActive, pageName}) {
+  const [isTop, backToTop] = useState({show: false})
+
+  useEffect(() => {
+    isTop && window.scrollTo({top: 0, behavior: 'smooth'});
+  });
 
   return (
-    <div>
+    <div className={`${classNamePage === "home" && "home-page"}`}>
       <Head>
         <title>ResisTIC Timeline - {pageName}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/logo.png"/>
-        <link rel="stylesheet" href="https://use.typekit.net/rxw5tvt.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
       </Head>
       <div className={`container ${classNamePage}`}>
         <header>
@@ -29,6 +39,11 @@ export default function Template({children, classNamePage, menuActive, pageName}
             <li><Link href="/resistic/mentions-legales">Mentions légales</Link></li>
           </ul>
         </footer>
+        <Fab className="back-to-top" size="small" aria-label="scroll back to top" onClick={() => backToTop({
+          show: !isTop.show,
+        })}>
+          <KeyboardArrowUpIcon />
+        </Fab>
       </div>
     </div>
   )

@@ -5,22 +5,22 @@ export const MENU_ITEMS = [
     alias: ["/resistic-timeline", "/resistic/timeline"]
   },
   {
-    name: 'Thèmes',
-    url: '/resistic/themes',
-    alias: ["/resistic-themes", "/resistic/themes", "/theme/[theme_id]"]
+    name: 'Enquêtes',
+    url: '/resistic/enquetes',
+    alias: ["/resistic-enquetes", "/resistic/enquetes", "/enquetes/[enquetes_id]"]
   },
   {
-    name: 'Publications',
-    url: '/publications'
+    name: 'Bibliographies',
+    url: '/bibliographies'
   },
   {
     name: 'Dataviz',
     url: '/data-vizualisation'
   },
-  {
-    name: 'Le projet',
-    url: '/resistic/le-projet'
-  }
+  // {
+  //   name: 'Le projet',
+  //   url: '/resistic/le-projet'
+  // }
 ];
 
 export const MENU_HEIGHT = 297;
