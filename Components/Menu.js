@@ -5,9 +5,7 @@ import {useRouter} from "next/router";
 export default function Menu({classNamePage}) {
   const router = useRouter()
   if (classNamePage === "home") {
-    return <ul className={classNamePage}>
-      <li>Contact</li>
-    </ul>
+    return null
   } else if (classNamePage === false) {
     return;
   } else {

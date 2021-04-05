@@ -1,25 +1,25 @@
 import React, {useState} from "react";
-import DrawerPublications from "./DrawerPublications";
+import DrawerBibliography from "./DrawerBibliography";
+import Link from "next/link";
 
-export default function Drawer({publications, description, data, event, image, evenements_id, title}) {
-  const [drawerPublications, showDrawerPublications] = useState({show: false, publications: []})
+export default function Drawer({bibliographies, description, data, event, image, evenements_id, title}) {
+  const [drawerBibliography, showDrawerBibliography] = useState({show: false, bibliographies: []})
   const keywords_event = data.mots_cles && data.mots_cles.map((word) => {
     return <span key={`drawer-${word.id}`}>#{word.mot_cle}</span>
   })
   const themes = data.theme_name && data.theme_name.map((e, i) => {
-    return e !== "" && <li key={`${e}-${i}`}>{e.replace(/-/g, " ")}</li>
+    return e !== "" && <li key={`${e}-${i}`}><Link href={`/theme/${data.theme3 && data.theme3[i].themes3_id}?theme_name=${e}`}>{e.replace(/-/g, " ")}</Link></li>
   })
-  const publication_list = data.autres_publications.map((e) => {
+  const bibliography_list = data.bibliographie && data.bibliographie.map((e) => {
     if (e.evenements_id === evenements_id) {
-      return publications.map((el) => {
-        return e.publications_id === el.id && <li className="hit-item">
+      return bibliographies.map((el) => {
+        return e.bibliographies_id === el.id && <li className="hit-item">
           <div className="hit-item__content">
             <h3 className="hit-item__title">{el.titre}</h3>
-            <span className="hit-item__author">{`${el.owner.first_name} ${el.owner.last_name}`}</span>
             <p className="hit-item__description">
               {el.description}
             </p>
-            <a className="hit-item__cta button empty">Voir plus</a>
+            <a href={el.lien_bibliographique} target="_blank" className="hit-item__cta button empty">Voir plus</a>
           </div>
         </li>
       })
@@ -38,10 +38,10 @@ export default function Drawer({publications, description, data, event, image, e
         <ul className="drawer__themes-list">
           {themes}
         </ul>
-        {publication_list.length > 0 && <div className="drawer-button"><a className="button empty" onClick={() => showDrawerPublications({ show: !drawerPublications.show})}>Aller plus loin</a></div>}
+        {bibliography_list.length > 0 && <div className="drawer-button"><a className="button empty" onClick={() => showDrawerBibliography({ show: !drawerBibliography.show})}>Aller plus loin</a></div>}
       </div>
-      {drawerPublications.show && <DrawerPublications publication_list={publication_list} event={() => showDrawerPublications({
-        show: !drawerPublications.show,
+      {drawerBibliography.show && <DrawerBibliography bibliography_list={bibliography_list} event={() => showDrawerBibliography({
+        show: !drawerBibliography.show,
       })}/>}
     </div>
   )

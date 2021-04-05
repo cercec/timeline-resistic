@@ -10,12 +10,33 @@
   width: 40%;
   color: #2D3748;
   flex-direction: row-reverse;
+  @media screen and (max-width: $phone) {
+    width: 100%;
+  }
 
   &-content {
     width: 100%;
     background: #fff;
     padding: 3em;
     overflow: scroll;
+    .drawer-bibliographies & {
+      @media screen and (max-width: $phone) {
+        padding: 0;
+      }
+    }
+  }
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1em;
+    @media screen and (max-width: $phone) {
+     flex-direction: column;
+    }
+    a {
+      padding: 10px 15px;
+    }
   }
 
   &-button {
@@ -36,7 +57,7 @@
   }
 
   h2 {
-    font-family: reross-quadratic;
+    font-family: 'Montserrat';
     font-size: 30px;
     margin: 10px 0 20px;
     color: $orange;

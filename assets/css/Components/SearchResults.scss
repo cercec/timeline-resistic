@@ -1,4 +1,4 @@
-.search-results, .publications, .drawer-publication {
+.search-results, .bibliographies, .drawer-bibliographies {
   .ais-SearchBox {
     display: flex;
     align-items: center;
@@ -8,6 +8,9 @@
       width: 50%;
       margin: 50px 0;
       position: relative;
+      @media screen and (max-width: $phone) {
+        width: 100%;
+      }
     }
 
     input[type="search"] {
@@ -22,11 +25,13 @@
       &[type="submit"] {
         display: none;
       }
+
       &[type="reset"] {
         background: #fff;
         border: none;
         outline: none;
       }
+
       .icon-close {
         position: absolute;
         right: 30px;
@@ -36,17 +41,26 @@
       }
     }
   }
+
   .ais-Hits-list {
     display: grid;
     grid-template-columns: 50% 50%;
+    @media screen and (max-width: $phone) {
+      grid-template-columns: 100%;
+    }
+
     .ais-Hits-item {
       margin: 5px 5px 2em;
     }
   }
+
   h1 {
     font-size: 6em;
     color: #CECECE;
     margin-bottom: 30px;
+    @media screen and (max-width: $phone) {
+      font-size: 3em;
+    }
   }
 
   h3 {
@@ -68,10 +82,12 @@
     &__date {
       margin-top: 15px;
       margin-bottom: 10px;
+
       p {
         font-size: 16px;
       }
     }
+
     &__description {
       margin-bottom: 15px;
     }
