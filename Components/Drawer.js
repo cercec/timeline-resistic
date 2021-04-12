@@ -38,7 +38,7 @@ export default function Drawer({bibliographies, description, data, event, image,
         <ul className="drawer__themes-list">
           {themes}
         </ul>
-        {bibliography_list.length > 0 && <div className="drawer-button"><a className="button empty" onClick={() => showDrawerBibliography({ show: !drawerBibliography.show})}>Aller plus loin</a></div>}
+        {bibliography_list && bibliography_list.length > 0 && <div className="drawer-button"><a className="button empty" onClick={() => showDrawerBibliography({ show: !drawerBibliography.show})}>Aller plus loin</a></div>}
       </div>
       {drawerBibliography.show && <DrawerBibliography bibliography_list={bibliography_list} event={() => showDrawerBibliography({
         show: !drawerBibliography.show,
