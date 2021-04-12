@@ -1,5 +1,5 @@
 import {
-  fetchAllBibliographies,
+  fetchAllBibliographie,
   fetchAllEvents,
   fetchAllImages,
   fetchAllThemes
@@ -8,9 +8,9 @@ import React from "react";
 import Timeline from "../../Components/Timeline";
 import Template from "../../Components/Template";
 
-export default function Enquetes({events, images, bibliographies, enquetes}) {
+export default function Enquetes({events, images, bibliographie, enquetes}) {
   return <Template classNamePage="timeline theme-page" pageName="Enquêtes">
-    <Timeline datas={events.all_events.data} images={images} bibliographies={bibliographies.all_bibliographies.data} enquetes={enquetes}/>
+    <Timeline datas={events.all_events.data} images={images} bibliographie={bibliographie.all_bibliographie.data} enquetes={enquetes}/>
   </Template>
 }
 
@@ -31,14 +31,14 @@ export async function getStaticProps() {
   const events = await fetchAllEvents()
   const images = await fetchAllImages()
   const enquetes = await fetchAllThemes()
-  const bibliographies = await fetchAllBibliographies()
+  const bibliographie = await fetchAllBibliographie()
 
   return {
     props: {
       events,
       images,
       enquetes,
-      bibliographies
+      bibliographie
     },
   }
 }
