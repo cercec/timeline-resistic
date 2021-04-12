@@ -39,8 +39,8 @@ export async function fetchAllEvents() {
         })
       });
       let themes_event = []
-      event.theme3.length > 0 && event.theme3.map((el, i) => {
-        themes_event[i] = null !== themes.all_themes.data.find((e) => e.id === el.themes3_id).theme && themes.all_themes.data.find((e) => e.id === el.themes3_id).theme;
+      event.themes.length > 0 && event.themes.map((el, i) => {
+        themes_event[i] = null !== themes.all_themes.data.find((e) => e.id === el.themes_id).theme && themes.all_themes.data.find((e) => e.id === el.themes_id).theme;
       })
       event.theme_name = themes_event;
       event.objectID = event.id
@@ -81,15 +81,15 @@ export async function fetchAllPages() {
   }
 }
 
-export async function fetchAllBibliographies() {
+export async function fetchAllBibliographie() {
   try {
-    // Get bibliographies via Directus API
-    const res_bibliographies = await axiosDirectus.get(
-      "/items/bibliographies?fields=*.*"
+    // Get bibliographie via Directus API
+    const res_bibliographie = await axiosDirectus.get(
+      "/items/bibliographie?fields=*.*"
     )
 
-    const all_bibliographies = res_bibliographies.data
-    return {all_bibliographies}
+    const all_bibliographie = res_bibliographie.data
+    return {all_bibliographie}
   } catch (e) {
     console.log({message: e})
   }
@@ -99,7 +99,7 @@ export async function fetchAllThemes() {
   try {
     // Get all themes via Directus API
     const res_themes = await axiosDirectus.get(
-      "/items/themes3"
+      "/items/themes"
     )
     const all_themes = res_themes.data
 
