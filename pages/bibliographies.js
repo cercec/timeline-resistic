@@ -1,9 +1,9 @@
 import Template from "../Components/Template";
-import {fetchAllBibliographies} from "../utils/fetchers";
+import {fetchAllBibliographie} from "../utils/fetchers";
 import React from "react";
 
-export default function SearchResults({bibliographies}) {
-  const bibliographies_list = bibliographies.all_bibliographies.data.map((el) => {
+export default function SearchResults({bibliographie}) {
+  const bibliographie_list = bibliographie.all_bibliographie.data.map((el) => {
     return <li className="hit-item">
       <div className="hit-item__content">
         <h3 className="hit-item__title">{el.titre}</h3>
@@ -15,21 +15,21 @@ export default function SearchResults({bibliographies}) {
     </li>
   })
   return (
-    <Template classNamePage="bibliographies" pageName="Publications">
-      <h1>Bibliographies</h1>
+    <Template classNamePage="bibliographie" pageName="Publications">
+      <h1>Bibliographie</h1>
       <ul>
-        {bibliographies_list}
+        {bibliographie_list}
       </ul>
     </Template>
   )
 }
 
 export async function getStaticProps() {
-  const bibliographies = await fetchAllBibliographies()
+  const bibliographie = await fetchAllBibliographie()
 
   return {
     props: {
-      bibliographies
+      bibliographie
     },
   }
 }
