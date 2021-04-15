@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import DrawerBibliography from "./DrawerBibliography";
 import Link from "next/link";
 
-export default function Drawer({bibliographies, description, data, event, image, evenements_id, title}) {
-  const [drawerBibliography, showDrawerBibliography] = useState({show: false, bibliographies: []})
+export default function Drawer({bibliographie, description, data, event, image, evenements_id, title}) {
+  const [drawerBibliography, showDrawerBibliography] = useState({show: false, bibliographie: []})
   const keywords_event = data.mots_cles && data.mots_cles.map((word) => {
     return <span key={`drawer-${word.id}`}>#{word.mot_cle}</span>
   })
@@ -12,14 +12,14 @@ export default function Drawer({bibliographies, description, data, event, image,
   })
   const bibliography_list = data.bibliographie && data.bibliographie.map((e) => {
     if (e.evenements_id === evenements_id) {
-      return bibliographies.map((el) => {
-        return e.bibliographies_id === el.id && <li className="hit-item">
+      return bibliographie.map((el, i) => {
+        return e.bibliographie_id === el.id && <li key={`${el}-${i}`} className="hit-item">
           <div className="hit-item__content">
             <h3 className="hit-item__title">{el.titre}</h3>
             <p className="hit-item__description">
               {el.description}
             </p>
-            <a href={el.lien_bibliographique} target="_blank" className="hit-item__cta button empty">Voir plus</a>
+            <a href={el.lien_source} target="_blank" className="hit-item__cta button empty">Voir plus</a>
           </div>
         </li>
       })
@@ -29,7 +29,7 @@ export default function Drawer({bibliographies, description, data, event, image,
     <div className="drawer">
       <div className="drawer-content">
         <i className="icon-close" onClick={event} />
-        <img src={image && image}/>
+        {image && <img src={image}/>}
         <h2>{title}</h2>
         <div className="drawer-description">{description}</div>
         <div className="drawer-keywords">

@@ -18,7 +18,9 @@
   }
 
   &__title {
-    font-family: 'Montserrat';
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: 'Roboto';
     font-size: 23px;
     color: $orange;
   }

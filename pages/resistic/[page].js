@@ -24,15 +24,18 @@ export default function Page({pages, images}) {
         <div className="images">
           <img src={`${image_1 && image_1.data.full_url}`} alt=""/>
           <img src={`${image_2 && image_2.data.full_url}`} alt=""/>
-          <div className="square"></div>
+          {image_1 &&
+          image_2 &&
+          image_3 &&
+          image_4 && <div className="square"></div>}
           <img src={`${image_3 && image_3.data.full_url}`} alt=""/>
           <img src={`${image_4 && image_4.data.full_url}`} alt=""/>
         </div>
         <div className="intro">
           <h1>{page_data.titre}</h1>
           <div dangerouslySetInnerHTML={pageDescription()}/>
-          <Link href={`/resistic-${page}`}><a
-            className="button full">Voir {page_data.titre === 'Timeline' ? 'la timeline' : 'les enquêtes'}</a></Link>
+          {page_data.titre !== 'ResisTIC' && page_data.bouton && <Link href={`/resistic-${page_data.bouton.url}`}><a
+            className="button full">{page_data.bouton.label}</a></Link>}
         </div>
       </div> : <div className="intro">
         <h1 style={{ fontSize: '4em', color: '#CECECE'}}>{page_data.titre}</h1>
