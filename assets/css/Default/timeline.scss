@@ -82,7 +82,7 @@
       font-size: 5em;
       left: 1em;
       color: #EFEFEF;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Roboto', sans-serif;
       @media screen and (max-width: $phone) {
         left: 0;
         font-size: 4em;
@@ -91,7 +91,7 @@
 
     h1 {
       color: $orange;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin-bottom: 1em;
     }
   }
@@ -178,7 +178,7 @@
     width: 300px;
     text-align: right;
     text-transform: uppercase;
-    font-family: 'Montserrat';
+    font-family: 'Roboto';
     @media screen and (max-width: $phone) {
       position: relative;
       right: auto;

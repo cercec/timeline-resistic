@@ -3,14 +3,14 @@ import {fetchAllBibliographie} from "../utils/fetchers";
 import React from "react";
 
 export default function SearchResults({bibliographie}) {
-  const bibliographie_list = bibliographie.all_bibliographie.data.map((el) => {
-    return <li className="hit-item">
+  const bibliographie_list = bibliographie.all_bibliographie.data.map((el, i) => {
+    return <li key={`${el}-${i}`} className="hit-item">
       <div className="hit-item__content">
         <h3 className="hit-item__title">{el.titre}</h3>
         <p className="hit-item__description">
           {el.description}
         </p>
-        <a href={el.lien_bibliographique} target="_blank" className="hit-item__cta button empty">Voir plus</a>
+        <a href={el.lien_source} target="_blank" className="hit-item__cta button empty">Voir plus</a>
       </div>
     </li>
   })

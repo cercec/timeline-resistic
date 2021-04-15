@@ -10,17 +10,17 @@ export const MENU_ITEMS = [
     alias: ["/resistic-enquetes", "/resistic/enquetes", "/enquetes/[enquetes_id]"]
   },
   {
-    name: 'Bibliographies',
-    url: '/bibliographies'
+    name: 'Bibliographie',
+    url: '/bibliographie'
   },
   {
     name: 'Dataviz',
     url: '/data-vizualisation'
   },
-  // {
-  //   name: 'Le projet',
-  //   url: '/resistic/le-projet'
-  // }
+  {
+    name: 'ResisTIC',
+    url: '/resistic/resistic'
+  }
 ];
 
 export const MENU_HEIGHT = 297;

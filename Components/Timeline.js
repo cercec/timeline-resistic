@@ -11,14 +11,15 @@ import Drawer from "../Components/Drawer";
 import {capitalize} from "../utils/capitalize";
 import {useRouter} from "next/router";
 import {switchColors} from "../utils/switchColors";
+import {extract} from "../utils/extract";
 
 const searchClient = algoliasearch(
   '9CIFY5KJJB',
   '7a71442ebbb7b3bdb975b1fffa64a27b'
 );
 
-export default function Timeline({datas, images, bibliographies, searchResults, enquetes}) {
-  const [drawer, setDrawer] = useState({show: false, bibliographies: []})
+export default function Timeline({datas, images, bibliographie, searchResults, enquetes}) {
+  const [drawer, setDrawer] = useState({show: false, bibliographie: []})
   const [filters, showFilters] = useState({show: false})
   const router = useRouter()
   const {enquetes_id, enquetes_name} = router.query
@@ -47,27 +48,28 @@ export default function Timeline({datas, images, bibliographies, searchResults, 
                     id: hit.id,
                     image: image && image.data.full_url,
                     drawer_data: hit,
-                    bibliographies: hit.bibliographie && hit.bibliographie.find((e) => e) !== undefined && hit.bibliographie.find((e) => e).evenements_id
+                    bibliographie: hit.bibliographie && hit.bibliographie.find((e) => e) !== undefined && hit.bibliographie.find((e) => e).evenements_id
                   })
                 }}>
       <div className="hit-item__content">
         {!searchResults && date}
-        <h3 className="hit-item__title">{hit.titre}</h3>
+        <h3 className="hit-item__title">{hit.titre}
+          <div className="tooltips-categories">
+            {hit.categorie.map((category, i) => {
+              if (category !== "") {
+                let customColor = switchColors(category)
+                return <div key={category + '-' + i} className="hit-item__category">
+                  <span className="hit-item__category__tooltiptext">{capitalize(category).replace(/-/g, " ")}</span>
+                  <span className="hit-item__category__tooltip" style={{'--category': customColor}}/>
+                </div>
+              }
+            })}
+          </div>
+        </h3>
         {searchResults && date}
         <p className="hit-item__description">
-          {`${hit.description.substr(0, 100)}...`}
+          {`${extract(hit.description)} ...`}
         </p>
-        <div className="tooltips-categories">
-          {hit.categorie.map((category, i) => {
-            if (category !== "") {
-              let customColor = switchColors(category)
-              return <div key={category + '-' + i} className="hit-item__category">
-                <span className="hit-item__category__tooltiptext">{capitalize(category).replace(/-/g, " ")}</span>
-                <span className="hit-item__category__tooltip" style={{'--category': customColor}}/>
-              </div>
-            }
-          })}
-        </div>
         {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
       {!searchResults && <img className="hit-item__image" src={image ? image.data.thumbnails[3].url : ''} alt=""/>}
@@ -149,8 +151,8 @@ export default function Timeline({datas, images, bibliographies, searchResults, 
       </div>
       {drawer && drawer.id && (
         <Drawer
-          bibliographies={bibliographies}
-          evenements_id={drawer.bibliographies}
+          bibliographie={bibliographie}
+          evenements_id={drawer.bibliographie}
           data={drawer.drawer_data}
           image={drawer.image}
           description={drawer.drawer_data.description}
