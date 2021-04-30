@@ -1,11 +1,18 @@
 import React from "react";
-import Link from "next/link";
-import {fetchAllEvents, fetchAllImages, fetchAllPages, fetchAllThemes} from "../../utils/fetchers";
+import {
+  fetchAllBibliographie,
+  fetchAllEvents,
+  fetchAllImages,
+  fetchAllPages,
+  fetchAllThemes
+} from "../../utils/fetchers";
 import Template from "../../Components/Template";
 import {slugify} from "../../utils/slugify";
 import {useRouter} from "next/router";
+import ResisticEnquetes from "../../Components/ResisticEnquetes";
+import Timeline from "../../Components/Timeline";
 
-export default function Page({pages, images}) {
+export default function Page({bibliographie, events, pages, images, enquetes}) {
   const router = useRouter()
   const {page} = router.query
   const page_data = pages.all_pages.data.find((e) => slugify(e.titre) === page)
@@ -34,14 +41,18 @@ export default function Page({pages, images}) {
         <div className="intro">
           <h1>{page_data.titre}</h1>
           <div dangerouslySetInnerHTML={pageDescription()}/>
-          {page_data.titre !== 'ResisTIC' && page_data.bouton && <Link href={`/resistic-${page_data.bouton.url}`}><a
-            className="button full">{page_data.bouton.label}</a></Link>}
+          {page === 'enquetes' && <div className="themes-list">
+            <ResisticEnquetes enquetes={enquetes}/>
+          </div>}
         </div>
       </div> : <div className="intro">
-        <h1 style={{ fontSize: '4em', color: '#CECECE'}}>{page_data.titre}</h1>
+        <h1 style={{fontSize: '4em', color: '#CECECE'}}>{page_data.titre}</h1>
         <div dangerouslySetInnerHTML={pageDescription()}/>
       </div>
       }
+      {page === 'timeline' && <div className="timeline">
+        <Timeline datas={events.all_events.data} images={images} bibliographie={bibliographie.all_bibliographie.data}/>
+      </div>}
     </Template>
   )
 }
@@ -60,10 +71,16 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
+  const bibliographie = await fetchAllBibliographie()
+  const events = await fetchAllEvents()
   const pages = await fetchAllPages()
   const images = await fetchAllImages()
+  const enquetes = await fetchAllThemes()
   return {
     props: {
+      bibliographie,
+      enquetes,
+      events,
       pages,
       images
     },

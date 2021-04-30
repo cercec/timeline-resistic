@@ -12,7 +12,7 @@ export default function Home({pages}) {
     <Template classNamePage="home" pageName="Accueil">
       <div className="home-wrapper">
         <div className="intro">
-          <h1>De 2010 à nos jours, une histoire controversée d'internet en Russie</h1>
+          <h1>{HomeData.titre}</h1>
           <div dangerouslySetInnerHTML={homeDescription()}/>
         </div>
         <div className="home-menu">

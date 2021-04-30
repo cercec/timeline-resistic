@@ -118,7 +118,6 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
         <h1>Résultats de recherche</h1>
       </div>}
       {!searchResults && <div className="heading">
-        {!enquetes_name && <h1>Tous les événements</h1>}
         <div className="filters">
           <div className={`button${filters.show ? ' active' : ''}`} onClick={() => {
             showFilters({
