@@ -16,10 +16,6 @@ export const MENU_ITEMS = [
   {
     name: 'Dataviz',
     url: '/data-vizualisation'
-  },
-  {
-    name: 'ResisTIC',
-    url: '/resistic/resistic'
   }
 ];
 
