@@ -51,9 +51,9 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
                     bibliographie: hit.bibliographie && hit.bibliographie.find((e) => e) !== undefined && hit.bibliographie.find((e) => e).evenements_id
                   })
                 }}>
-      <div className="hit-item__content">
+      <div className={`hit-item__content ${image && image.data ? '' : 'fullwidth'}`}>
         {!searchResults && date}
-        <h3 className="hit-item__title">{hit.titre}
+        <h3 className="hit-item__title">{hit.titre.length > (image && image.data ? 100 : 125) ? extract(hit.titre, (image && image.data ? 100 : 125)) : hit.titre}
           <div className="tooltips-categories">
             {hit.categorie.map((category, i) => {
               if (category !== "") {
@@ -68,11 +68,11 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
         </h3>
         {searchResults && date}
         <p className="hit-item__description">
-          {`${hit.description.length > 250 ? extract(hit.description) : hit.description}`}
+          {`${hit.description.length > 250 ? extract(hit.description, 250) : hit.description}`}
         </p>
         {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
-      {!searchResults && <img className="hit-item__image" src={image ? image.data.thumbnails[3].url : ''} alt=""/>}
+      {!searchResults && image && image.data ? <div className="hit-item__image" style={{backgroundImage: `url(${image ? image.data.thumbnails[3].url : ''})` }} alt=""/> : ''}
     </div>
   };
 
