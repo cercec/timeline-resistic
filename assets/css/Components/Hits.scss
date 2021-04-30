@@ -20,7 +20,7 @@
   &__title {
     display: flex;
     flex-direction: row-reverse;
-    font-family: 'Roboto';
+    font-family: $primaryFontFamily;
     font-size: 23px;
     color: $orange;
   }
