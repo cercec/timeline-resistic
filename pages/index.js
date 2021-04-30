@@ -4,9 +4,9 @@ import {fetchAllEvents, fetchAllPages, pushDataToAlgolia} from "../utils/fetcher
 import Menu from "../Components/Menu";
 
 export default function Home({pages}) {
-  const HomeData = pages.all_pages.data.find((e) => e.titre === "ResisTIC");
+  const HomeData = pages.all_pages.data.find((e) => e.id === 5);
   const homeDescription = () => {
-    return {__html: HomeData.contenu.substr(0, 470) + ' ...'}
+    return {__html: HomeData.contenu}
   }
   return (
     <Template classNamePage="home" pageName="Accueil">
@@ -14,7 +14,6 @@ export default function Home({pages}) {
         <div className="intro">
           <h1>De 2010 à nos jours, une histoire controversée d'internet en Russie</h1>
           <div dangerouslySetInnerHTML={homeDescription()}/>
-          <a href={'/resistic/resistic'} className="button">{HomeData.bouton.label}</a>
         </div>
         <div className="home-menu">
           <Menu/>
