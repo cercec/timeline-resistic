@@ -4,38 +4,47 @@
     font-size: 45px;
     color: $orange;
   }
+
   .home-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 4em auto 5em;
     width: calc(100% - 100px);
+
     .intro {
       width: 50%;
     }
+
     .home-menu {
       display: flex;
       align-items: center;
       justify-content: center;
+
       ul {
         position: relative;
         height: 360px;
+
         &:before {
           content: "";
           display: block;
-          height: 100%;
+          height: 77%;
           width: 6px;
           background: #000;
           position: absolute;
           left: 5px;
           bottom: 25px;
           border-radius: 50px;
+          top: 0;
         }
+
         li {
           font-size: 36px;
           margin: 0.5em 0;
           display: flex;
           align-items: center;
+          font-family: $FuturaPT;
+
           &:before {
             content: "";
             display: block;
@@ -48,8 +57,10 @@
             margin-right: 30px;
             transform: scale(1.6);
           }
+
           &:hover {
             cursor: pointer;
+
             &:before {
               background: $orange;
               transition: 0.2s;
@@ -58,6 +69,7 @@
         }
       }
     }
+
     a.button {
       margin-top: 30px;
     }

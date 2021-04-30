@@ -3,7 +3,7 @@
   &-wrapper {
     display: flex;
     @media screen and (max-width: $phone) {
-     flex-direction: column;
+      flex-direction: column;
     }
   }
 
@@ -82,7 +82,7 @@
       font-size: 5em;
       left: 1em;
       color: #EFEFEF;
-      font-family: 'Roboto', sans-serif;
+      font-family: $primaryFontFamily, sans-serif;
       @media screen and (max-width: $phone) {
         left: 0;
         font-size: 4em;
@@ -91,13 +91,14 @@
 
     h1 {
       color: $orange;
-      font-family: 'Roboto', sans-serif;
+      font-family: $primaryFontFamily, sans-serif;
       margin-bottom: 1em;
     }
   }
 
   &.theme-page .heading {
     justify-content: flex-end !important;
+    margin-top: 1em;
   }
 
   .heading {
@@ -121,29 +122,30 @@
 
     .filters {
       position: relative;
-      width: 300px;
+      width: 100%;
       @media screen and (max-width: $phone) {
         width: 100%;
       }
 
-      .button {
+      .categories-wrapper {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        .categories {
+          @media screen and (max-width: $phone) {
+            flex-direction: column;
+          }
+        }
+      }
+
+      .ais-ClearRefinements-button {
         background: #EFEFEF;
-        padding: 11px 0;
-        width: 100px;
+        padding: 10px;
         transition: 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
-        float: right;
-
-        @media screen and (max-width: $phone) {
-          float: left;
-          margin: 1em;
-        }
-
-        &.active {
-          background: #AEAEAE;
-        }
+        border: none;
 
         &:hover {
           background: #AEAEAE;
@@ -153,20 +155,8 @@
       }
 
       .categories {
-        position: absolute;
-        right: 0;
-        top: 43px;
-        z-index: 1;
-        background: #D3D3D3;
-        width: 100%;
-        padding: 25px 40px;
-        @media screen and (max-width: $phone) {
-          display: flex;
-          flex-direction: column;
-          position: initial;
-          padding: 0;
-          margin-bottom: 20px;
-        }
+        display: flex;
+        justify-content: flex-end;
       }
     }
   }
@@ -178,7 +168,7 @@
     width: 300px;
     text-align: right;
     text-transform: uppercase;
-    font-family: 'Roboto';
+    font-family: $primaryFontFamily;
     @media screen and (max-width: $phone) {
       position: relative;
       right: auto;
@@ -321,6 +311,7 @@
 
   &-labelText {
     display: flex;
+    align-items: center;
     position: relative;
 
     &:before {
@@ -331,15 +322,17 @@
       left: -20px;
       width: 20px;
       height: 20px;
-      background: #D3D3D3;
       border-radius: 50px;
     }
   }
 
   &-item {
-    margin: 20px 0;
+    margin: 20px 40px 20px 0;
     @media screen and (max-width: $phone) {
-      margin: 10px 0;
+      margin: 10px 30px 10px 0;
+    }
+    &:last-of-type {
+      margin-right: 0;
     }
 
     &--selected {

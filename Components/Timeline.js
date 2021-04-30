@@ -2,7 +2,7 @@ import {
   Hits,
   InstantSearch,
   Configure,
-  RefinementList, SearchBox, connectRefinementList
+  RefinementList, SearchBox, connectRefinementList, ClearRefinements
 } from 'react-instantsearch-dom';
 import React, {useState} from "react";
 import algoliasearch from "algoliasearch/lite";
@@ -51,9 +51,9 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
                     bibliographie: hit.bibliographie && hit.bibliographie.find((e) => e) !== undefined && hit.bibliographie.find((e) => e).evenements_id
                   })
                 }}>
-      <div className="hit-item__content">
+      <div className={`hit-item__content ${image && image.data ? '' : 'fullwidth'}`}>
         {!searchResults && date}
-        <h3 className="hit-item__title">{hit.titre}
+        <h3 className="hit-item__title">{hit.titre.length > (image && image.data ? 100 : 125) ? extract(hit.titre, (image && image.data ? 100 : 125)) : hit.titre}
           <div className="tooltips-categories">
             {hit.categorie.map((category, i) => {
               if (category !== "") {
@@ -68,33 +68,38 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
         </h3>
         {searchResults && date}
         <p className="hit-item__description">
-          {`${extract(hit.description)} ...`}
+          {`${hit.description.length > 250 ? extract(hit.description, 250) : hit.description}`}
         </p>
         {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
-      {!searchResults && <img className="hit-item__image" src={image ? image.data.thumbnails[3].url : ''} alt=""/>}
+      {!searchResults && image && image.data ? <div className="hit-item__image" style={{backgroundImage: `url(${image ? image.data.thumbnails[3].url : ''})` }} alt=""/> : ''}
     </div>
   };
 
   const CategoriesRefinementList = ({items, refine, createURL}) => (
-    <ul className={`refinement-list categories ${filters.show === false ? 'hide' : ''}`}>
-      {items && items.map(item => {
-        return <li className={`refinement-list-item ${item.isRefined ? 'refinement-list-item--selected' : ''}`}
-                   key={item.label}>
-          <a
-            className="refinement-list-label"
-            href={createURL(item.value)}
-            onClick={event => {
-              event.preventDefault();
-              refine(item.value);
-            }}
-          >
+    <div className="categories-wrapper">
+      <ul className="refinement-list categories">
+        {items && items.map(item => {
+          return <li className={`refinement-list-item ${item.isRefined ? 'refinement-list-item--selected' : ''}`}
+                     key={item.label}>
+            <a
+              className="refinement-list-label"
+              href={createURL(item.value)}
+              onClick={event => {
+                event.preventDefault();
+                refine(item.value);
+              }}
+            >
             <span className="refinement-list-labelText"
                   style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span>
-          </a>
-        </li>
-      })}
-    </ul>
+            </a>
+          </li>
+        })}
+      </ul>
+      <ClearRefinements translations={{
+        reset: 'Réinitialiser les filtres',
+      }}/>
+    </div>
   );
 
   const CustomRefinementList = connectRefinementList(CategoriesRefinementList);
@@ -118,15 +123,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
         <h1>Résultats de recherche</h1>
       </div>}
       {!searchResults && <div className="heading">
-        {!enquetes_name && <h1>Tous les événements</h1>}
         <div className="filters">
-          <div className={`button${filters.show ? ' active' : ''}`} onClick={() => {
-            showFilters({
-              show: !filters.show,
-            })
-          }}>
-            Filtres
-          </div>
           <CustomRefinementList
             attribute="categorie"
           />

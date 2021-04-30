@@ -1,36 +1,21 @@
-.themes-list {
-  .themes-wrapper {
-    h1 {
-      font-size: 4em;
-      margin-bottom: 1em;
-      color: #CECECE;
-    }
-
-    .themes-list-item {
-      display: flex;
-      align-items: center;
-    }
-
-    .themes-list-image {
-      background-size: cover;
-      height: 550px;
-      width: 481px;
-      margin-left: 45px;
-    }
-  }
-
-  .themes-cards {
+.bibliographie {
+  .bibliographie-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+    margin-top: 3em;
     @media screen and (max-width: $phone) {
       grid-template-columns: repeat(1, 1fr);
     }
 
-    .card {
+    .hit-item {
       border: $orange 3px solid;
       border-radius: 10px;
       padding: 20px;
+
+      &__title {
+        color: #000;
+      }
 
       h3 {
         margin-bottom: 20px;
