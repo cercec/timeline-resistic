@@ -2,7 +2,7 @@ import {
   Hits,
   InstantSearch,
   Configure,
-  RefinementList, SearchBox, connectRefinementList
+  RefinementList, SearchBox, connectRefinementList, ClearRefinements
 } from 'react-instantsearch-dom';
 import React, {useState} from "react";
 import algoliasearch from "algoliasearch/lite";
@@ -77,24 +77,29 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
   };
 
   const CategoriesRefinementList = ({items, refine, createURL}) => (
-    <ul className={`refinement-list categories ${filters.show === false ? 'hide' : ''}`}>
-      {items && items.map(item => {
-        return <li className={`refinement-list-item ${item.isRefined ? 'refinement-list-item--selected' : ''}`}
-                   key={item.label}>
-          <a
-            className="refinement-list-label"
-            href={createURL(item.value)}
-            onClick={event => {
-              event.preventDefault();
-              refine(item.value);
-            }}
-          >
+    <div className="categories-wrapper">
+      <ul className="refinement-list categories">
+        {items && items.map(item => {
+          return <li className={`refinement-list-item ${item.isRefined ? 'refinement-list-item--selected' : ''}`}
+                     key={item.label}>
+            <a
+              className="refinement-list-label"
+              href={createURL(item.value)}
+              onClick={event => {
+                event.preventDefault();
+                refine(item.value);
+              }}
+            >
             <span className="refinement-list-labelText"
                   style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span>
-          </a>
-        </li>
-      })}
-    </ul>
+            </a>
+          </li>
+        })}
+      </ul>
+      <ClearRefinements translations={{
+        reset: 'Réinitialiser les filtres',
+      }}/>
+    </div>
   );
 
   const CustomRefinementList = connectRefinementList(CategoriesRefinementList);
@@ -119,13 +124,6 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
       </div>}
       {!searchResults && <div className="heading">
         <div className="filters">
-          <div className={`button${filters.show ? ' active' : ''}`} onClick={() => {
-            showFilters({
-              show: !filters.show,
-            })
-          }}>
-            Filtres
-          </div>
           <CustomRefinementList
             attribute="categorie"
           />
