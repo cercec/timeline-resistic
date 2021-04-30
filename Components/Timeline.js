@@ -68,7 +68,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
         </h3>
         {searchResults && date}
         <p className="hit-item__description">
-          {`${extract(hit.description)} ...`}
+          {`${hit.description.length > 250 ? extract(hit.description) : hit.description}`}
         </p>
         {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
