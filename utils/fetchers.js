@@ -85,7 +85,7 @@ export async function fetchAllBibliographie() {
   try {
     // Get bibliographie via Directus API
     const res_bibliographie = await axiosDirectus.get(
-      "/items/bibliographie?fields=*.*"
+      "/items/bibliographie?sort=-date&fields=*.*"
     )
 
     const all_bibliographie = res_bibliographie.data
