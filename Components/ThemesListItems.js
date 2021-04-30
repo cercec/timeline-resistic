@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ResisticEnquetes({enquetes}) {
+export default function ThemesListItems({enquetes}) {
   const ThemesListItems = () => {
     return <div className="themes-cards">
       {enquetes.all_themes.data.map((e, i) => {

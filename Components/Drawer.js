@@ -8,7 +8,7 @@ export default function Drawer({bibliographie, description, data, event, image, 
     return <span key={`drawer-${word.id}`}>#{word.mot_cle}</span>
   })
   const themes = data.theme_name && data.theme_name.map((e, i) => {
-    return e !== "" && <li key={`${e}-${i}`}><Link href={`/theme/${data.theme3 && data.theme3[i].themes3_id}?theme_name=${e}`}>{e.replace(/-/g, " ")}</Link></li>
+    return e !== "" && <li key={`${e}-${i}`}><Link href={`/enquetes/${data.themes && data.themes[i].themes_id}?enquetes_name=${e}`}>{e.replace(/-/g, " ")}</Link></li>
   })
   const bibliography_list = data.bibliographie && data.bibliographie.map((e) => {
     if (e.evenements_id === evenements_id) {

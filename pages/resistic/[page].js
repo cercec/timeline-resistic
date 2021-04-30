@@ -9,7 +9,7 @@ import {
 import Template from "../../Components/Template";
 import {slugify} from "../../utils/slugify";
 import {useRouter} from "next/router";
-import ResisticEnquetes from "../../Components/ResisticEnquetes";
+import ThemesListItems from "../../Components/ThemesListItems";
 import Timeline from "../../Components/Timeline";
 
 export default function Page({bibliographie, events, pages, images, enquetes}) {
@@ -42,7 +42,7 @@ export default function Page({bibliographie, events, pages, images, enquetes}) {
           <h1>{page_data.titre}</h1>
           <div dangerouslySetInnerHTML={pageDescription()}/>
           {page === 'enquetes' && <div className="themes-list">
-            <ResisticEnquetes enquetes={enquetes}/>
+            <ThemesListItems enquetes={enquetes}/>
           </div>}
         </div>
       </div> : <div className="intro">
