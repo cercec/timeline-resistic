@@ -287,6 +287,10 @@
     align-items: center;
     margin-left: 1em;
   }
+
+  &-themes-description {
+    font-size: 20px;
+  }
 }
 
 .refinement-list {
@@ -327,12 +331,12 @@
   }
 
   &-item {
-    margin: 20px 40px 20px 0;
+    margin: 20px 60px 20px 0;
     @media screen and (max-width: $phone) {
-      margin: 10px 30px 10px 0;
+      margin: 10px 50px 10px 0;
     }
     &:last-of-type {
-      margin-right: 0;
+      margin-right: 20px;
     }
 
     &--selected {
@@ -340,13 +344,26 @@
         &:after {
           content: "";
           display: block;
-          background: var(--category);
+          background: #005DC8;
           position: absolute;
           left: -14px;
           top: 6px;
           width: 12px;
           height: 12px;
           border-radius: 50px;
+        }
+        .refinement-list-labelTextCat {
+          &:after {
+            content: "";
+            display: block;
+            background: var(--category);
+            position: absolute;
+            right: -20px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50px;
+          }
         }
       }
     }

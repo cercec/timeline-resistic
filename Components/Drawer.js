@@ -4,9 +4,6 @@ import Link from "next/link";
 
 export default function Drawer({bibliographie, description, data, event, image, evenements_id, title}) {
   const [drawerBibliography, showDrawerBibliography] = useState({show: false, bibliographie: []})
-  const keywords_event = data.mots_cles && data.mots_cles.map((word) => {
-    return <span key={`drawer-${word.id}`}>#{word.mot_cle}</span>
-  })
   const themes = data.theme_name && data.theme_name.map((e, i) => {
     return e !== "" && <li key={`${e}-${i}`}><Link href={`/enquetes/${data.themes && data.themes[i].themes_id}?enquetes_name=${e}`}>{e.replace(/-/g, " ")}</Link></li>
   })
@@ -32,9 +29,6 @@ export default function Drawer({bibliographie, description, data, event, image, 
         {image && <img src={image}/>}
         <h2>{title}</h2>
         <div className="drawer-description">{description}</div>
-        <div className="drawer-keywords">
-          {keywords_event}
-        </div>
         <ul className="drawer__themes-list">
           {themes}
         </ul>

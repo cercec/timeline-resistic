@@ -1,13 +1,21 @@
 import GoogleMapReact from 'google-map-react';
 import React, {useState} from "react";
 import RoomIcon from '@material-ui/icons/Room';
-import {fetchAllCategories, fetchAllEvents} from "../utils/fetchers";
+import {fetchAllCategories, fetchAllDataViz, fetchAllEvents} from "../utils/fetchers";
 import Drawer from "../Components/Drawer";
 import Template from "../Components/Template";
 import Chart from "../Components/Chart";
 
-export default function DataVizualisation({categories, events}) {
+export default function DataVizualisation({categories, dataviz, events}) {
   const [drawer, showDrawer] = useState({show: false})
+
+  const carteDescription = () => {
+    return {__html: dataviz.all_dataviz.data[0].contenu}
+  }
+
+  const graphDescription = () => {
+    return {__html: dataviz.all_dataviz.data[0].contenu}
+  }
 
   const Marker = ({text}) => <div>{text}</div>;
   let event_location = events.all_events.data.filter((event) => event.lieu !== null)
@@ -35,6 +43,7 @@ export default function DataVizualisation({categories, events}) {
       <h1>Data Vizualisation des événements</h1>
       <div className="chart">
         <Chart data={events} categories={categories.categoriesList}/>
+        <div dangerouslySetInnerHTML={graphDescription()}/>
       </div>
       <h2 style={{ marginTop: '25px', marginBottom: '10px'}}>Carte des événéments</h2>
       <div style={{height: '70vh', width: '100%'}}>
@@ -44,7 +53,7 @@ export default function DataVizualisation({categories, events}) {
             lat: 59.95,
             lng: 99.33
           }}
-          defaultZoom={2}
+          defaultZoom={4}
         >
           {markers}
         </GoogleMapReact>
@@ -60,6 +69,7 @@ export default function DataVizualisation({categories, events}) {
           />
         )}
       </div>
+      <div dangerouslySetInnerHTML={carteDescription()}/>
     </Template>
   )
 }
@@ -67,10 +77,12 @@ export default function DataVizualisation({categories, events}) {
 export async function getStaticProps() {
   const categories = await fetchAllCategories()
   const events = await fetchAllEvents()
+  const dataviz = await fetchAllDataViz()
 
   return {
     props: {
       categories,
+      dataviz,
       events
     },
   }

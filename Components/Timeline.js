@@ -20,7 +20,6 @@ const searchClient = algoliasearch(
 
 export default function Timeline({datas, images, bibliographie, searchResults, enquetes}) {
   const [drawer, setDrawer] = useState({show: false, bibliographie: []})
-  const [filters, showFilters] = useState({show: false})
   const router = useRouter()
   const {enquetes_id, enquetes_name} = router.query
   let years = [];
@@ -90,8 +89,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
                 refine(item.value);
               }}
             >
-            <span className="refinement-list-labelText"
-                  style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span>
+            <span className="refinement-list-labelText"><span className="refinement-list-labelTextCat" style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span></span>
             </a>
           </li>
         })}
@@ -136,7 +134,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
             <p className="upper-heading">Enquêtes</p>
             <h1
               style={{marginBottom: '1em'}}>{enquetes.all_themes.data.find((e) => e.id.toString() === enquetes_id).theme}</h1>
-            <div dangerouslySetInnerHTML={themeDescription()}/>
+            <div className="timeline-themes-description" dangerouslySetInnerHTML={themeDescription()}/>
           </div>
         </div>}
         {!enquetes_name && !searchResults && <ul className="timeline-years">
