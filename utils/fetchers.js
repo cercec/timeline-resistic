@@ -95,6 +95,20 @@ export async function fetchAllBibliographie() {
   }
 }
 
+export async function fetchAllDataViz() {
+  try {
+    // Get dataviz via Directus API
+    const res_dataviz = await axiosDirectus.get(
+      "/items/data_vizualisation?fields=*.*"
+    )
+
+    const all_dataviz = res_dataviz.data
+    return {all_dataviz}
+  } catch (e) {
+    console.log({message: e})
+  }
+}
+
 export async function fetchAllThemes() {
   try {
     // Get all themes via Directus API
