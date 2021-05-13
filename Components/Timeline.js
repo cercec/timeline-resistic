@@ -89,8 +89,9 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
                 refine(item.value);
               }}
             >
-            <span className="refinement-list-labelText"><span className="refinement-list-labelTextCat" style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span></span>
-            </a>
+            <span className="refinement-list-labelText"
+                  style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span>
+          </a>
           </li>
         })}
       </ul>

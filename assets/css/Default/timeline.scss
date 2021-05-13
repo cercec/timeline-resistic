@@ -164,7 +164,7 @@
   .hit-item__date {
     position: absolute;
     right: calc(100% + 70px);
-    top: 47px;
+    top: 79px;
     width: 300px;
     text-align: right;
     text-transform: uppercase;
@@ -177,7 +177,10 @@
     }
 
     &.period {
-      top: 40px;
+      top: 76px;
+      p {
+        margin: 0;
+      }
       @media screen and (max-width: $phone) {
         top: auto;
       }
@@ -317,6 +320,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    font-weight: 300;
 
     &:before {
       content: "";
@@ -341,29 +345,17 @@
 
     &--selected {
       .refinement-list-labelText {
+        font-weight: bold;
         &:after {
           content: "";
           display: block;
-          background: #005DC8;
+          background: var(--category);
           position: absolute;
           left: -14px;
           top: 6px;
           width: 12px;
           height: 12px;
           border-radius: 50px;
-        }
-        .refinement-list-labelTextCat {
-          &:after {
-            content: "";
-            display: block;
-            background: var(--category);
-            position: absolute;
-            right: -20px;
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50px;
-          }
         }
       }
     }
