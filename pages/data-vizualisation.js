@@ -48,7 +48,7 @@ export default function DataVizualisation({categories, dataviz, events}) {
       <h2 style={{ marginTop: '25px', marginBottom: '10px'}}>Carte des événéments</h2>
       <div style={{height: '70vh', width: '100%'}}>
         <GoogleMapReact
-          bootstrapURLKeys={{key: 'AIzaSyAXDXVXNer-nY_Q4ptxj_10pmx2H_xYJZ0'}}
+          bootstrapURLKeys={{key: 'AIzaSyBcFxGLIvmoQ-cXwgKrQJ6CwjEv5irAXtU'}}
           defaultCenter={{
             lat: 59.95,
             lng: 99.33
