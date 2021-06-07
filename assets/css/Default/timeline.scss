@@ -343,20 +343,23 @@
       margin-right: 20px;
     }
 
+    .refinement-list-labelText {
+      &:after {
+        content: "";
+        display: block;
+        background: var(--category);
+        position: absolute;
+        left: -14px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+      }
+    }
+
     &--selected {
       .refinement-list-labelText {
         font-weight: bold;
-        &:after {
-          content: "";
-          display: block;
-          background: var(--category);
-          position: absolute;
-          left: -14px;
-          top: 6px;
-          width: 12px;
-          height: 12px;
-          border-radius: 50px;
-        }
       }
     }
   }
