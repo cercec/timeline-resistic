@@ -109,6 +109,20 @@ export async function fetchAllDataViz() {
   }
 }
 
+export async function fetchMap() {
+  try {
+    // Get dataviz via Directus API
+    const res_carte = await axiosDirectus.get(
+      "/items/carte?fields=*.*"
+    )
+
+    const carte = res_carte.data
+    return {carte}
+  } catch (e) {
+    console.log({message: e})
+  }
+}
+
 export async function fetchAllThemes() {
   try {
     // Get all themes via Directus API

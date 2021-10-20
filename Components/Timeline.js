@@ -66,9 +66,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
           </div>
         </h3>
         {searchResults && date}
-        <p className="hit-item__description">
-          {`${hit.description.length > 250 ? extract(hit.description, 250) : hit.description}`}
-        </p>
+        {hit.chapo && <p className="hit-item__chapo">{hit.chapo}</p>}
         {searchResults && <a className="hit-item__cta button empty">Voir plus</a>}
       </div>
       {!searchResults && image && image.data ? <div className="hit-item__image" style={{backgroundImage: `url(${image ? image.data.thumbnails[3].url : ''})` }} alt=""/> : ''}

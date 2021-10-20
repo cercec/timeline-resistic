@@ -18,6 +18,10 @@ export const MENU_ITEMS = [
     url: '/data-vizualisation'
   },
   {
+    name: 'Carte',
+    url: '/carte'
+  },
+  {
     name: 'ResisTIC',
     url: '/resistic/resistic'
   }

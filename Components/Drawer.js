@@ -3,6 +3,7 @@ import DrawerBibliography from "./DrawerBibliography";
 import Link from "next/link";
 
 export default function Drawer({bibliographie, description, data, event, image, evenements_id, title}) {
+  console.log(data)
   const [drawerBibliography, showDrawerBibliography] = useState({show: false, bibliographie: []})
   const themes = data.theme_name && data.theme_name.map((e, i) => {
     return e !== "" && <li key={`${e}-${i}`}><Link href={`/enquetes/${data.themes && data.themes[i].themes_id}?enquetes_name=${e}`}>{e.replace(/-/g, " ")}</Link></li>
@@ -32,7 +33,10 @@ export default function Drawer({bibliographie, description, data, event, image, 
         <ul className="drawer__themes-list">
           {themes}
         </ul>
-        {bibliography_list && bibliography_list.length > 0 && <div className="drawer-button"><a className="button empty" onClick={() => showDrawerBibliography({ show: !drawerBibliography.show})}>Aller plus loin</a></div>}
+        <div className="drawer__button-wrapper">
+          {data.lien_externe && <a href={data.lien_externe} target="_blank" className="hit-item__cta button empty">Source</a>}
+          {bibliography_list && bibliography_list.length > 0 && <div className="drawer-button"><a className="button empty" onClick={() => showDrawerBibliography({ show: !drawerBibliography.show})}>Aller plus loin</a></div>}
+        </div>
       </div>
       {drawerBibliography.show && <DrawerBibliography bibliography_list={bibliography_list} event={() => showDrawerBibliography({
         show: !drawerBibliography.show,
