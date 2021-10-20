@@ -35,7 +35,7 @@
         height: 16px;
         border-radius: 50px;
         background: #000;
-        position: relative;
+        position: absolute;
         transition: 0.2s;
       }
 
@@ -47,6 +47,11 @@
           transform: scale(1.4);
           transition: 0.2s;
         }
+      }
+
+      a {
+        position: relative;
+        left: 5px;
       }
     }
   }
