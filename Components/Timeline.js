@@ -39,8 +39,11 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
         <span>{dateFormatter(hit.debut)}</span>
         {hit.fin !== null && hit.fin !== hit.debut && <span><span> - </span>{dateFormatter(hit.fin)}</span>}</>}
     </div>
+    let heightItem = !searchResults && hit.chapo ? 170 : 'auto';
+    let beforeHeightItem = !searchResults && hit.chapo ? '85px' : '55px';
     let image = hit.image !== null && images.files.data.find((image) => hit.image.id === image.id);
     return <div id={hit.debut.substr(0, 4)} className={`${searchResults ? 'results-item' : 'timeline-item'}`}
+                style={{ height: heightItem }}
                 onClick={() => {
                   setDrawer({
                     show: !drawer.show,
@@ -50,6 +53,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
                     bibliographie: hit.bibliographie && hit.bibliographie.find((e) => e) !== undefined && hit.bibliographie.find((e) => e).evenements_id
                   })
                 }}>
+      <span className="peak" style={{ '--beforeHeightItem': beforeHeightItem }}></span>
       <div className={`hit-item__content ${image && image.data ? '' : 'fullwidth'}`}>
         {!searchResults && date}
         <h3 className="hit-item__title">{hit.titre.length > (image && image.data ? 100 : 125) ? extract(hit.titre, (image && image.data ? 100 : 125)) : hit.titre}
