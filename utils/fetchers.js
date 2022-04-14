@@ -8,7 +8,7 @@ const client = algoliasearch(
   `${process.env.API_KEY}`
 )
 
-const index = client.initIndex("resistic")
+const index = client.initIndex(`${process.env.NEXT_PUBLIC_INDEX_NAME}`)
 
 export function createExcerpt(description) {
   const regex = /(<([^>]+)>)/gi
@@ -27,6 +27,7 @@ export async function fetchAllEvents() {
       "/items/evenements?sort=debut&fields=*.*"
     )
     const all_events = res_events.data
+    console.log(all_events)
 
     let keywords = await fetchAllKeywords();
     let themes = await fetchAllThemes();
