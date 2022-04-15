@@ -24,10 +24,9 @@ export async function fetchAllEvents() {
   try {
     // Get all events via Directus API
     const res_events = await axiosDirectus.get(
-      "/items/evenements?sort=debut&fields=*.*"
+      "/items/evenements?sort=debut&fields=*.*&limit=-1&status=published"
     )
     const all_events = res_events.data
-    console.log(all_events)
 
     let keywords = await fetchAllKeywords();
     let themes = await fetchAllThemes();
@@ -187,11 +186,10 @@ export async function fetchAllCategories() {
 }
 
 export async function pushDataToAlgolia(props) {
+  console.log(props)
   try {
-    await index.replaceAllObjects(props, {
+    await index.saveObjects(props, {
       autoGenerateObjectIDIfNotExist: true,
-    }).then(({objectIDs}) => {
-      // console.log(objectIDs);
     })
   } catch (e) {
     console.log("message", e)
