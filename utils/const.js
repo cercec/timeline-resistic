@@ -13,10 +13,10 @@ export const MENU_ITEMS = [
     name: 'Bibliographie',
     url: '/bibliographie'
   },
-  {
-    name: 'Dataviz',
-    url: '/data-vizualisation'
-  },
+  // {
+    // name: 'Dataviz',
+    // url: '/data-vizualisation'
+  // },
   {
     name: 'Carte',
     url: '/carte'
