@@ -60,7 +60,7 @@
     font-family: $primaryFontFamily;
     font-size: 30px;
     margin: 10px 0 20px;
-    color: $orange;
+    color: $primary;
   }
 
   img {
@@ -73,7 +73,7 @@
 
   &-keywords span {
     margin-right: 25px;
-    color: $orange;
+    color: $primary;
   }
 
   &__themes-list {
@@ -82,11 +82,11 @@
       display: flex;
       align-items: center;
       margin: 5px 0;
-      color: $orange;
+      color: $primary;
       &:before {
         content: "T";
         color: #fff;
-        background: $orange;
+        background: $primary;
         width: 30px;
         height: 30px;
         border-radius: 50px;

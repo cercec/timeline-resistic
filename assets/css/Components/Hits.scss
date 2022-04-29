@@ -28,7 +28,8 @@
     flex-direction: row-reverse;
     font-family: $primaryFontFamily;
     font-size: 23px;
-    color: $orange;
+    color: $primary;
+    font-weight: bold;
   }
 
   &__category {

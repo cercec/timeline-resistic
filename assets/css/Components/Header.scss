@@ -36,7 +36,8 @@ header {
         margin: 0 0.9em;
         width: 70px;
         font-size: 18px;
-        font-family: $FuturaPT;
+        font-family: $Garamond;
+        font-weight: 500;
 
         a {
           display: flex;
@@ -58,11 +59,11 @@ header {
 
           &:hover {
             cursor: pointer;
-            color: $orange;
+            color: $primary;
             transition: 0.2s;
 
             &:after {
-              background: $orange;
+              background: $primary;
               transform: scale(1.4);
               transition: 0.2s;
             }
@@ -70,7 +71,7 @@ header {
 
           &.active {
             &:after {
-              background: $orange;
+              background: $primary;
               transform: scale(1.4);
             }
           }
@@ -78,7 +79,7 @@ header {
 
         &.active a {
           &:after {
-            background: $orange;
+            background: $primary;
             transform: scale(1.4);
           }
         }

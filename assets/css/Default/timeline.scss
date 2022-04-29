@@ -54,7 +54,7 @@
         cursor: pointer;
 
         &:before {
-          background: $orange;
+          background: $primary;
           transform: scale(1.4);
           transition: 0.2s;
         }
@@ -64,7 +64,6 @@
 
   &-themes-content {
     width: 30%;
-    background: #EFEFEF;
     height: fit-content;
     position: relative;
     @media screen and (max-width: $phone) {
@@ -81,7 +80,6 @@
       top: -2em;
       font-size: 5em;
       left: 1em;
-      color: #EFEFEF;
       font-family: $primaryFontFamily, sans-serif;
       @media screen and (max-width: $phone) {
         left: 0;
@@ -90,7 +88,7 @@
     }
 
     h1 {
-      color: $orange;
+      color: $primary;
       font-family: $primaryFontFamily, sans-serif;
       margin-bottom: 1em;
     }
@@ -139,7 +137,7 @@
       }
 
       .ais-ClearRefinements-button {
-        background: #EFEFEF;
+        background: #fff;
         padding: 10px;
         transition: 0.2s;
         display: flex;
@@ -192,7 +190,7 @@
     align-items: center;
     position: relative;
     width: 100%;
-    background: #EFEFEF;
+    background: #fff;
     left: 40px;
     height: 130px;
     @media screen and (max-width: $phone) {
@@ -200,14 +198,14 @@
       padding: 20px;
       flex-direction: column;
       width: calc(100% - 80px);
-      background: #EFEFEF;
+      background: #fff;
       left: 20px;
     }
 
     .peak {
       position: relative;
       left: -25px;
-      border-right: 25px solid #EFEFEF;
+      border-right: 25px solid #fff;
       border-top: var(--beforeHeightItem) solid transparent;
       border-bottom: var(--beforeHeightItem) solid transparent;
       @media screen and (max-width: $phone) {
@@ -266,7 +264,7 @@
           cursor: pointer;
 
           &:before {
-            background: $orange;
+            background: $primary;
             transform: scale(1.4);
             transition: 0.2s;
           }
@@ -344,6 +342,7 @@
     }
 
     .refinement-list-labelText {
+      font-size: 18px;
       &:after {
         content: "";
         display: block;
@@ -356,7 +355,7 @@
         border-radius: 50px;
         @media screen and (max-width: 1382px) {
           left: -24px;
-          top: 3px;
+          top: 6px;
         }
         @media screen and (max-width: 1262px) {
           top: 13px;
