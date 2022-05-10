@@ -28,6 +28,14 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
     !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && e.fin.substr(0, 4) >= 2010 && years.push(e.fin.substr(0, 4))
   });
 
+  let cleanCategories = {
+    'controles-et-regulations': 'Contrôles et régulations',
+    'critiques-et-contournements': 'Critiques et contournements',
+    'contexte-national-et-international': 'Contexte national et international',
+    'infrastructures-et-technologies': 'Infrastructures et technologies',
+    'marche-et-entreprises': 'Marché et entreprises'
+  }
+
   const themeDescription = () => {
     return {__html: enquetes.all_themes.data.find((e) => e.id.toString() === enquetes_id).description}
   }
@@ -62,7 +70,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
               if (category !== "") {
                 let customColor = switchColors(category)
                 return <div key={category + '-' + i} className="hit-item__category">
-                  <span className="hit-item__category__tooltiptext">{capitalize(category).replace(/-/g, " ")}</span>
+                  <span className="hit-item__category__tooltiptext">{cleanCategories[category]}</span>
                   <span className="hit-item__category__tooltip" style={{'--category': customColor}}/>
                 </div>
               }
@@ -92,7 +100,7 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
               }}
             >
             <span className="refinement-list-labelText"
-                  style={{'--category': switchColors(item.label)}}>{capitalize(item.label.replace(/-/g, " "))}</span>
+                  style={{'--category': switchColors(item.label)}}>{cleanCategories[item.label]}</span>
           </a>
           </li>
         })}
