@@ -349,7 +349,7 @@
         background: var(--category);
         position: absolute;
         left: -14px;
-        top: 16px;
+        top: 6px;
         width: 12px;
         height: 12px;
         border-radius: 50px;
@@ -361,7 +361,7 @@
           top: 13px;
         }
         @media screen and (max-width: $phone) {
-          top: 4px;
+          top: 5px;
         }
       }
     }
