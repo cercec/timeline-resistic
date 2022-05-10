@@ -137,8 +137,6 @@ export async function fetchAllThemes() {
     )
     const all_themes = res_themes.data
 
-    console.log(all_themes.data.length)
-
     return {all_themes}
   } catch (e) {
     console.log({message: e})

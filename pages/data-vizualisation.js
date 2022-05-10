@@ -8,7 +8,6 @@ import Chart from "../Components/Chart";
 
 export default function DataVizualisation({categories, dataviz, events}) {
   const [drawer, showDrawer] = useState({show: false})
-console.log(dataviz)
   const graphDescription = () => {
     return {__html: dataviz.all_dataviz.data[0].contenu}
   }
