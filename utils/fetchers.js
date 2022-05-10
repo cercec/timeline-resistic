@@ -39,8 +39,14 @@ export async function fetchAllEvents() {
         })
       });
       let themes_event = []
+      let themes_availables = []
+      themes.all_themes.data.map((e) => {
+        themes_availables.push(e.id)
+      })
       event.themes.length > 0 && event.themes.map((el, i) => {
-        themes_event[i] = null !== themes.all_themes.data.find((e) => e.id === el.themes_id).theme && themes.all_themes.data.find((e) => e.id === el.themes_id).theme;
+        if (themes_availables.includes(el.themes_id)) {
+          themes_event[i] = null !== themes.all_themes.data.find((e) => e.id === el.themes_id).theme && themes.all_themes.data.find((e) => e.id === el.themes_id).theme;
+        }
       })
       event.theme_name = themes_event;
       event.objectID = event.id
@@ -127,9 +133,11 @@ export async function fetchAllThemes() {
   try {
     // Get all themes via Directus API
     const res_themes = await axiosDirectus.get(
-      "/items/themes?status=published"
+      "/items/themes?fields=*.*&limit=-1&status=published"
     )
     const all_themes = res_themes.data
+
+    console.log(all_themes.data.length)
 
     return {all_themes}
   } catch (e) {
