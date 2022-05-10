@@ -1,8 +1,9 @@
 import '../assets/css/app.scss';
 import React from "react";
 import NextNProgress from "../Components/NextNProgress";
+import FeedbackForm from "../Components/FeedbackForm";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({Component, pageProps}) {
   return <>
     <NextNProgress
       color="#FF3900"
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
       stopDelayMs={200}
       height="30"
     />
+    <FeedbackForm/>
     <Component {...pageProps} />
   </>
 }

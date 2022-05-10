@@ -1,0 +1,55 @@
+.feedback-form {
+  background: #fff;
+  width: fit-content;
+  padding: 2rem;
+  position: fixed;
+  right: 0;
+  top: 34%;
+  z-index: 9999;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+  transform: translateX(100%);
+  transition: 0.2s;
+
+  &--open {
+    transform: translateX(0%);
+    transition: 0.2s;
+  }
+
+  .tag {
+    cursor: pointer;
+    background: $primary;
+    color: #fff;
+    position: absolute;
+    left: -36px;
+    writing-mode: vertical-rl;
+    padding: 10px 6px;
+    transform: rotate(180deg);
+    top: 80px;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .icon-close {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    width: 10px;
+
+    &:before, &:after {
+      height: 15px;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    textarea {
+      margin: 1rem 0;
+      height: 80px;
+      padding: 1rem;
+      font-family: $primaryFontFamily;
+    }
+  }
+}
