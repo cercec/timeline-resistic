@@ -9,7 +9,7 @@ import Timeline from "../../Components/Timeline";
 import Template from "../../Components/Template";
 
 export default function Enquetes({events, images, bibliographie, enquetes}) {
-  return <Template classNamePage="timeline theme-page" pageName="Enquêtes">
+  return <Template classNamePage="timeline theme" pageName="Enquêtes">
     <Timeline datas={events.all_events.data} images={images} bibliographie={bibliographie.all_bibliographie.data} enquetes={enquetes}/>
   </Template>
 }
