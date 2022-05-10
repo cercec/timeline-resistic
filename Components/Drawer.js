@@ -3,7 +3,6 @@ import DrawerBibliography from "./DrawerBibliography";
 import Link from "next/link";
 
 export default function Drawer({bibliographie, description, data, event, image, evenements_id, title}) {
-  console.log(data)
   const [drawerBibliography, showDrawerBibliography] = useState({show: false, bibliographie: []})
   const themes = data.theme_name && data.theme_name.map((e, i) => {
     return e !== "" && <li key={`${e}-${i}`}><Link href={`/enquetes/${data.themes && data.themes[i].themes_id}?enquetes_name=${e}`}>{e.replace(/-/g, " ")}</Link></li>

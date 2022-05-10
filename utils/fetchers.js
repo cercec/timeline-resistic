@@ -186,7 +186,6 @@ export async function fetchAllCategories() {
 }
 
 export async function pushDataToAlgolia(props) {
-  console.log(props)
   try {
     await index.saveObjects(props, {
       autoGenerateObjectIDIfNotExist: true,
