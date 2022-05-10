@@ -127,7 +127,7 @@ export async function fetchAllThemes() {
   try {
     // Get all themes via Directus API
     const res_themes = await axiosDirectus.get(
-      "/items/themes"
+      "/items/themes?status=published"
     )
     const all_themes = res_themes.data
 
