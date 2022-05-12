@@ -1,0 +1,107 @@
+.hit-item {
+  padding: 18px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    padding-right: 20px;
+    &.fullwidth {
+      width: 100%;
+    }
+    @media screen and (max-width: $phone) {
+      width: 100%;
+      padding: 0;
+      .drawer-bibliographies & {
+        width: 85%;
+      }
+    }
+  }
+
+  &__chapo {
+    word-break: break-word;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: $primaryFontFamily;
+    font-size: 23px;
+    color: $primary;
+    font-weight: bold;
+  }
+
+  &__category {
+    position: relative;
+    margin-right: 1em;
+    margin-bottom: 5px;
+    &__tooltip {
+      &:before {
+        content: "";
+        display: block;
+        border: 2px solid #000;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+      }
+      &:after {
+        content: "";
+        display: block;
+        background: var(--category);
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+      }
+    }
+
+    &:hover {
+      .hit-item__category__tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    &__tooltiptext {
+      visibility: hidden;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 10px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+    }
+  }
+
+  &__image {
+    background-size: cover;
+    width: 30%;
+    height: 100%;
+    display: block;
+    background-position: center;
+    @media screen and (max-width: $phone) {
+      width: 100%;
+      height: 300px;
+      margin-top: 20px;
+    }
+  }
+}

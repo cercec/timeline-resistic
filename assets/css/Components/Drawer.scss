@@ -1,0 +1,104 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  overflow: scroll;
+  height: 100%;
+  box-shadow: 0 0 36px rgba(0, 0, 0, 0.06);
+  display: flex;
+  width: 40%;
+  color: #2D3748;
+  flex-direction: row-reverse;
+  @media screen and (max-width: $phone) {
+    width: 100%;
+  }
+
+  &-content {
+    width: 100%;
+    background: #fff;
+    padding: 3em;
+    overflow: scroll;
+    .drawer-bibliographies & {
+      @media screen and (max-width: $phone) {
+        padding: 0;
+      }
+    }
+  }
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1em;
+    @media screen and (max-width: $phone) {
+     flex-direction: column;
+    }
+    a {
+      padding: 10px 15px;
+    }
+  }
+
+  &-button {
+    display: flex;
+    justify-content: flex-end;
+    .button {
+      margin-top: 30px;
+    }
+  }
+
+  .icon-close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin: 10px 0 20px;
+    color: $primary;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  &-description {
+    margin-bottom: 20px;
+  }
+
+  &-keywords span {
+    margin-right: 25px;
+    color: $primary;
+  }
+
+  &__themes-list {
+    margin-top: 20px;
+    li {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+      color: $primary;
+      &:before {
+        content: "T";
+        color: #fff;
+        background: $primary;
+        width: 30px;
+        height: 30px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}

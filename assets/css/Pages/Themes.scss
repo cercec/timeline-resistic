@@ -1,0 +1,76 @@
+.themes {
+  h1 {
+    font-size: 10em;
+    line-height: 1em;
+    color: #000;
+    font-weight: 500;
+    @media screen and (max-width: $phone) {
+      font-size: 4em;
+    }
+  }
+
+  .themes-wrapper {
+    width: calc(100% - 100px);
+    margin: 0 auto;
+    padding: 5em 0;
+    @media screen and (max-width: $phone) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  .images {
+    display: flex;
+    position: relative;
+
+    @media screen and (max-width: $phone) {
+     img {
+       display: none;
+       &:nth-of-type(1) {
+         display: block;
+         width: 100%;
+       }
+     }
+      .square {
+        display: none;
+      }
+    }
+
+    img {
+      width: 310px;
+      border: 7px solid $bgDefault;
+
+      &:last-of-type {
+        border: 17px solid $bgDefault;
+        position: absolute;
+        bottom: -9em;
+        left: -15em;
+      }
+    }
+
+    .square {
+      border: 7px solid $bgDefault;
+      background: $primary;
+      width: 252px;
+      height: 234px;
+    }
+  }
+
+  .intro {
+    padding-left: 9em;
+    @media screen and (max-width: $phone) {
+      padding: 0;
+    }
+  }
+
+  a.button {
+    float: right;
+    margin-top: 3em;
+  }
+}
+
+.theme {
+  .timeline-wrapper {
+    margin-top: 6rem;
+  }
+}

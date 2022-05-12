@@ -1,0 +1,101 @@
+.bibliographie {
+  &-list-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-list {
+    position: relative;
+    margin-top: 3em;
+    width: 80%;
+
+    &:before {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 6px;
+      background: #000;
+      position: absolute;
+      left: 23px;
+      border-radius: 50px;
+    }
+
+    li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 23px;
+
+      &:before {
+        content: "";
+        display: inline-table;
+        width: 16px;
+        height: 16px;
+        border-radius: 50px;
+        background: #000;
+        position: absolute;
+        transition: 0.2s;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        &:before {
+          background: $primary;
+          transform: scale(1.4);
+          transition: 0.2s;
+        }
+      }
+
+      a {
+        position: relative;
+        left: 5px;
+      }
+    }
+  }
+  .hit-item {
+    &__content {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      background: #fff;
+      left: 40px;
+      height: 94px;
+      @media screen and (max-width: $phone) {
+        height: 100%;
+        padding: 20px;
+        flex-direction: column;
+        width: calc(100% - 80px);
+        background: #fff;
+        left: 20px;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -25px;
+        width: 0;
+        height: 0;
+        border-right: 25px solid #fff;
+        border-top: 48px solid transparent;
+        border-bottom: 48px solid transparent;
+        @media screen and (max-width: $phone) {
+          display: none;
+        }
+      }
+    }
+    &__date {
+      position: absolute;
+      left: -115px;
+      top: 14px;
+    }
+
+    &__title {
+      color: $primary;
+    }
+  }
+}

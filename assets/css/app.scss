@@ -1,0 +1,22 @@
+// Default
+@import "Default/variables";
+@import "Default/default";
+@import "Default/reset";
+@import "Default/timeline";
+
+// Fonts
+@import "Fonts/fonts";
+
+// Components
+@import "Components/Drawer";
+@import "Components/Footer";
+@import "Components/FeedbackForm";
+@import "Components/Header";
+@import "Components/Hits";
+@import "Components/SearchResults";
+@import "Components/ThemesList";
+
+// Pages
+@import "Pages/Bibliographie";
+@import "Pages/Index";
+@import "Pages/Themes";

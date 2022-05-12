@@ -1,0 +1,44 @@
+.themes-list, .bibliographie {
+  .themes-wrapper {
+    h1 {
+      font-size: 4em;
+      margin-bottom: 1em;
+      color: #CECECE;
+    }
+
+    .themes-list-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .themes-list-image {
+      background-size: cover;
+      height: 550px;
+      width: 481px;
+      margin-left: 45px;
+    }
+  }
+
+  .themes-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    @media screen and (max-width: $phone) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card {
+      border: $primary 3px solid;
+      border-radius: 10px;
+      padding: 20px;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      .button {
+        margin-top: 20px;
+      }
+    }
+  }
+}
