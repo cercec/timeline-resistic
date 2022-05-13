@@ -81,10 +81,11 @@
   &__themes-list {
     margin-top: 20px;
     li {
-      display: flex;
       align-items: center;
       margin: 5px 0;
       color: $primary;
+      display: grid;
+      grid-template-columns: 1fr 15rem;
       &:before {
         content: "T";
         color: #fff;
