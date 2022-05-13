@@ -10,7 +10,12 @@
     align-items: center;
     justify-content: space-between;
     margin: 4em auto 5em;
-    width: calc(100% - 100px);
+    @media screen and (min-width: $phone) {
+      width: calc(100% - 100px);
+    }
+    @media screen and (max-width: $phone) {
+      margin-top: 0;
+    }
 
     .intro {
       width: 50%;
