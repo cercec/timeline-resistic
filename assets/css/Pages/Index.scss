@@ -20,6 +20,7 @@
     }
 
     .vertical-menu {
+      display: flex;
       @media screen and (max-width: $phone) {
         display: none;
       }

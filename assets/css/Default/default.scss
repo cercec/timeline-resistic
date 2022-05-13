@@ -225,6 +225,10 @@ a, .submitFeedback {
     background: #fff;
     width: 100%;
     height: 100%;
+    flex-direction: column;
+    .logo {
+      margin-bottom: 3rem;
+    }
   }
 }
 

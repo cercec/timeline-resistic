@@ -39,6 +39,9 @@ export default function Template({children, classNamePage, menuActive, pageName}
             </Link>
           </nav>
           <div className={`vertical-menu ${showMenuBurger ? 'vertical-menu--open' : ''}`}>
+            <Link href="/">
+              <img className="logo" src="/logo.png" alt=""/>
+            </Link>
             <MainMenu handleMenu={handleMenu}/>
           </div>
           <div className="burger-button" onClick={handleMenu}>
