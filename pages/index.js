@@ -1,7 +1,7 @@
 import Template from "../Components/Template";
 import React from "react";
 import {fetchAllEvents, fetchAllPages, pushDataToAlgolia} from "../utils/fetchers";
-import Menu from "../Components/Menu";
+import MainMenu from "../Components/MainMenu";
 
 export default function Home({pages}) {
   const HomeData = pages.all_pages.data.find((e) => e.id === 5);
@@ -15,8 +15,8 @@ export default function Home({pages}) {
           <h1>{HomeData.titre}</h1>
           <div dangerouslySetInnerHTML={homeDescription()}/>
         </div>
-        <div className="home-menu">
-          <Menu/>
+        <div className="vertical-menu">
+          <MainMenu/>
         </div>
       </div>
     </Template>

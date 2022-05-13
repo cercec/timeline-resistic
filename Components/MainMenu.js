@@ -2,7 +2,7 @@ import Link from "next/link";
 import {MENU_ITEMS} from "../utils/const";
 import {useRouter} from "next/router";
 
-export default function Menu({classNamePage}) {
+export default function Menu({classNamePage, handleMenu}) {
   const router = useRouter()
   if (classNamePage === "home") {
     return null
@@ -11,7 +11,7 @@ export default function Menu({classNamePage}) {
   } else {
     return <ul>
       {MENU_ITEMS.map((e) => {
-        return <li
+        return <li onClick={handleMenu}
           className={`
           ${e.alias ? e.alias.indexOf(router.asPath) > -1 || e.alias.indexOf(router.pathname) > -1 ? 'active' : '' : router.asPath === e.url ? 'active' : ''}`}
           key={e.url}><Link href={e.url}>{e.name}</Link></li>

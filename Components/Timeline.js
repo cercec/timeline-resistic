@@ -12,6 +12,7 @@ import {capitalize} from "../utils/capitalize";
 import {useRouter} from "next/router";
 import {switchColors} from "../utils/switchColors";
 import {extract} from "../utils/extract";
+import {ArrowBack, Menu} from "@material-ui/icons";
 
 const searchClient = algoliasearch(
   '9CIFY5KJJB',
@@ -20,6 +21,7 @@ const searchClient = algoliasearch(
 
 export default function Timeline({datas, images, bibliographie, searchResults, enquetes}) {
   const [drawer, setDrawer] = useState({show: false, bibliographie: []})
+  const [showMenuBurger, setShowMenuBurger] = useState(false)
   const router = useRouter()
   const {enquetes_id, enquetes_name} = router.query
   let years = [];
@@ -27,6 +29,10 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
     !years.includes(e.debut.substr(0, 4)) && e.debut.substr(0, 4) >= 2010 && years.push(e.debut.substr(0, 4))
     !years.includes(e.fin !== null && e.fin.substr(0, 4)) && e.fin !== null && e.fin.substr(0, 4) >= 2010 && years.push(e.fin.substr(0, 4))
   });
+
+  const handleMenu = () => {
+    setShowMenuBurger(!showMenuBurger)
+  }
 
   let cleanCategories = {
     'controles-et-regulations': 'Contrôles et régulations',
@@ -99,8 +105,10 @@ export default function Timeline({datas, images, bibliographie, searchResults, e
                 refine(item.value);
               }}
             >
-            <span className="refinement-list-labelText"
-                  style={{'--category': switchColors(item.label)}}>{cleanCategories[item.label]}</span>
+              <div className="refinement-list-labelText">
+                <span className="dot" style={{'--category': switchColors(item.label)}}/>
+                <span className="">{cleanCategories[item.label]}</span>
+              </div>
           </a>
           </li>
         })}

@@ -26,10 +26,14 @@
   &__title {
     display: flex;
     flex-direction: row-reverse;
+    @media screen and (max-width: $phone) {
+     flex-direction: column-reverse;
+    }
     font-family: $primaryFontFamily;
     font-size: 23px;
     color: $primary;
     font-weight: bold;
+    word-break: break-word;
   }
 
   &__category {
