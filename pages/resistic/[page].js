@@ -28,7 +28,7 @@ export default function Page({bibliographie, events, pages, images, enquetes}) {
   return (
     <Template classNamePage="themes" pageName={page_data.titre}>
       {page !== 'mentions-legales' && page !== 'le-projet' ? <div className="themes-wrapper">
-        <div className="images">
+        {image_1 && <div className="images">
           <img src={`${image_1 && image_1.data.full_url}`} alt=""/>
           <img src={`${image_2 && image_2.data.full_url}`} alt=""/>
           {image_1 &&
@@ -37,7 +37,7 @@ export default function Page({bibliographie, events, pages, images, enquetes}) {
           image_4 && <div className="square"></div>}
           <img src={`${image_3 && image_3.data.full_url}`} alt=""/>
           <img src={`${image_4 && image_4.data.full_url}`} alt=""/>
-        </div>
+        </div>}
         <div className="intro">
           <h1>{page_data.titre}</h1>
           <div dangerouslySetInnerHTML={pageDescription()}/>
