@@ -19,6 +19,9 @@
     background: #fff;
     padding: 3em;
     overflow: scroll;
+    @media screen and (max-width: $phone) {
+      padding: 2rem;
+    }
     .drawer-bibliographies & {
       @media screen and (max-width: $phone) {
         padding: 0;

@@ -33,6 +33,7 @@ h1, h2, h3, h4 {
 
 h1 {
   font-size: 4em;
+  color: $primary !important;
 
   .theme-page & {
     font-size: 2em;
@@ -81,9 +82,11 @@ a, .submitFeedback {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+
   &.theme-page {
     max-width: 100%;
   }
+
   &.bibliographie {
     @media screen and (max-width: $phone) {
       width: calc(100% - 80px);
@@ -109,6 +112,11 @@ a, .submitFeedback {
     left: 15px;
     content: ' ';
     height: 33px;
+    @media screen and (max-width: $phone) {
+      .ais-SearchBox-reset & {
+        height: 16px;
+      }
+    }
     width: 2px;
     background-color: $primary;
   }
@@ -133,7 +141,7 @@ a, .submitFeedback {
   @media screen and (min-width: $phone) {
     display: none;
   }
-  z-index: 9999;
+  z-index: 9998;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -161,6 +169,27 @@ a, .submitFeedback {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .search-icon {
+    z-index: 9999;
+    padding: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+    background: #fff;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    cursor: pointer;
+  }
 
   ul {
     position: relative;
@@ -234,6 +263,7 @@ a, .submitFeedback {
 
 .home-page {
   position: relative;
+
   header {
     @media screen and (max-width: $phone) {
       display: block;
