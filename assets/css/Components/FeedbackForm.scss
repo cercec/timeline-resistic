@@ -35,9 +35,13 @@
 
   .icon-close {
     position: absolute;
-    right: 30px;
+    right: 15px;
     top: 20px;
-    width: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:before, &:after {
       height: 15px;
