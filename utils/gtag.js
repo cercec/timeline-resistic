@@ -1,1 +1,1 @@
-export const GA_MEASUREMENT_ID = "G-LNERWKE61Q"
+export const GA_MEASUREMENT_ID = "G-3TC380SD0P"
