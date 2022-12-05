@@ -84,8 +84,13 @@
       align-items: center;
       margin: 5px 0;
       color: $primary;
-      display: grid;
-      grid-template-columns: 1fr 25rem;
+      @media screen and (min-width: $tablet) {
+        display: flex;
+      }
+      @media screen and (max-width: $tablet) {
+        display: grid;
+        grid-template-columns: 1fr 25rem;
+      }
       &:before {
         content: "T";
         color: #fff;
