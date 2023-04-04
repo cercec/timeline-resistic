@@ -186,9 +186,14 @@
   }
 
   .hit-item__date {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
     position: absolute;
     right: calc(100% + 70px);
-    top: 24px;
+    top: -1.5px;
     @media screen and (min-width: $phone) {
       width: 300px;
     }
@@ -203,7 +208,6 @@
     }
 
     &.period {
-      top: 20px;
 
       p {
         margin: 0;
