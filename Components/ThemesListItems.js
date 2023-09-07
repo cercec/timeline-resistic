@@ -10,10 +10,10 @@ export default function ThemesListItems({enquetes}) {
         return <div className="card" key={`${e.theme}-${i}`}>
           <h3>{e.theme}</h3>
           <div dangerouslySetInnerHTML={themeDescription()}/>
-          <Link href={{
+          <Link className="button full" href={{
             pathname: '/enquetes/[slug]',
             query: {slug: e.id, enquetes_name: e.theme},
-          }}><a className="button full">Voir plus</a>
+          }}>Voir plus
           </Link>
         </div>
       })}

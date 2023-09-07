@@ -8,7 +8,7 @@ export default function DrawerBibliography({event, bibliography_list}) {
         <i className="icon-close" onClick={event} />
         <div className="title-wrapper">
           <h2>Publications</h2>
-          <Link href="/bibliographie"><a className="button full">Voir toutes les publications</a></Link>
+          <Link href="/bibliographie" className="button full">Voir toutes les publications</Link>
         </div>
         <ul className="drawer-bibliographie-list">
           {bibliography_list}
