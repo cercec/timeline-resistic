@@ -38,7 +38,7 @@ export default function Carte({categories, carte, events}) {
       <h1>{carte.carte.data[0].titre}</h1>
       <div style={{height: '70vh', width: '100%'}}>
         <GoogleMapReact
-          bootstrapURLKeys={{key: 'AIzaSyBcFxGLIvmoQ-cXwgKrQJ6CwjEv5irAXtU'}}
+          bootstrapURLKeys={{key: process.env.GOOGLE_MAP_REACT}}
           defaultCenter={{
             lat: 59.95,
             lng: 49.33
