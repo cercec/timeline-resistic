@@ -1,6 +1,10 @@
 import '../assets/css/app.scss';
 import React from "react";
 import NextNProgress from "../Components/NextNProgress";
+<<<<<<< Updated upstream
+=======
+import FeedbackForm from "../Components/FeedbackForm";
+>>>>>>> Stashed changes
 
 function MyApp({ Component, pageProps }) {
   return <>
