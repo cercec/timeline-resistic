@@ -28,6 +28,7 @@
     "vis-data": "^7.1.2"
   },
   "devDependencies": {
+    "eslint": "^8.51.0",
     "sass": "^1.51.0"
   }
 }
