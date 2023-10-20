@@ -1,4 +1,6 @@
+import React from "react";
 import Document, {Html, Head, Main, NextScript} from 'next/document';
+import {GA_MEASUREMENT_ID} from "../utils/gtag";
 
 class MyDocument extends Document {
   render() {
@@ -11,6 +13,24 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="icon" href="/logo.png"/>
+
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+          <script src={`https://www.google.com/recaptcha/api.js?render=${process.env.GOOGLE_RECAPTCHA}`}></script>
         </Head>
         <body>
         <Main/>
