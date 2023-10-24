@@ -1,41 +1,61 @@
-import GoogleMapReact from 'google-map-react';
-import React, {useState} from "react";
-import RoomIcon from '@material-ui/icons/Room';
-import {fetchAllCategories, fetchAllDataViz, fetchAllEvents} from "../utils/fetchers";
-import Drawer from "../Components/Drawer";
-import Template from "../Components/Template";
-import Chart from "../Components/Chart";
+import React from "react"
+import {
+  fetchAllCategories,
+  fetchAllDataViz,
+  fetchAllEvents,
+} from "../utils/fetchers"
+import Template from "../Components/Template"
+import Chart from "../Components/Chart"
 
-export default function DataVizualisation({categories, dataviz, events}) {
-  const [drawer, showDrawer] = useState({show: false})
+export default function DataVizualisation({ categories, dataviz, events }) {
   const graphDescription = () => {
-    return {__html: dataviz.all_dataviz.data[0].contenu}
+    return { __html: dataviz.all_dataviz?.data[0].contenu }
   }
 
   return (
-    <Template
-      className="default-page"
-      pageName={dataviz.all_dataviz.data[0].titre}
-    >
-      <h1>{dataviz.all_dataviz.data[0].titre}</h1>
-      <div className="chart">
-        <Chart data={events} categories={categories.categoriesList}/>
-        <div dangerouslySetInnerHTML={graphDescription()}/>
-      </div>
-    </Template>
+    dataviz.data && (
+      <Template
+        className="default-page"
+        // pageName={dataviz.all_dataviz.data[0].titre}
+      >
+        <h1>{dataviz.all_dataviz.data[0].titre}</h1>
+        <div className="chart">
+          <Chart data={events} categories={categories.categoriesList} />
+          <div dangerouslySetInnerHTML={graphDescription()} />
+        </div>
+      </Template>
+    )
   )
 }
 
 export async function getStaticProps() {
-  const categories = await fetchAllCategories()
-  const events = await fetchAllEvents()
-  const dataviz = await fetchAllDataViz()
+  let categories = []
+  let events = []
+  let dataviz = []
+
+  try {
+    categories = await fetchAllCategories()
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
+
+  try {
+    events = await fetchAllEvents()
+  } catch (error) {
+    console.error("Error fetching events:", error)
+  }
+
+  try {
+    dataviz = await fetchAllDataViz()
+  } catch (error) {
+    console.error("Error fetching data visualizations:", error)
+  }
 
   return {
     props: {
-      categories,
-      dataviz,
-      events
+      categories: categories || [],
+      events: events || [],
+      dataviz: dataviz || [],
     },
   }
 }
