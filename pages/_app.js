@@ -1,19 +1,21 @@
-import '../assets/css/app.scss';
-import React from "react";
-import NextNProgress from "../Components/NextNProgress";
-import FeedbackForm from "../Components/FeedbackForm";
+import "../assets/css/app.scss"
+import React from "react"
+import FeedbackForm from "../Components/FeedbackForm"
+import { PagesProgressBar as ProgressBar } from "next-nprogress-bar"
 
-function MyApp({Component, pageProps}) {
-  return <>
-    <NextNProgress
-      color="#FF3900"
-      startPosition={0.3}
-      stopDelayMs={200}
-      height="30"
-    />
-    <FeedbackForm/>
-    <Component {...pageProps} />
-  </>
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <ProgressBar
+        height="30px"
+        color="#FF3900"
+        options={{ showSpinner: true }}
+        shallowRouting
+      />
+      <FeedbackForm />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default MyApp
