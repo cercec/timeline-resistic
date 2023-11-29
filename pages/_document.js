@@ -31,7 +31,9 @@ class MyDocument extends Document {
             }}
           />
           <script
-            src={`https://www.google.com/recaptcha/api.js?render=${process.env.GOOGLE_RECAPTCHA}`}
+            src="https://www.google.com/recaptcha/api.js"
+            async
+            defer
           ></script>
         </Head>
         <body>

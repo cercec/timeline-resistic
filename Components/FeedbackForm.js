@@ -65,6 +65,10 @@ export default function FeedbackForm() {
         <h3>Envoyez-nous vos remarques</h3>
         <form onSubmit={handleSubmit}>
           <textarea placeholder="Remarques" onChange={handleChange} />
+          <div
+            className="g-recaptcha"
+            data-sitekey={process.env.GOOGLE_RECAPTCHA_V2_SITE_KEY}
+          ></div>
           {!notification && (
             <input
               className="submitFeedback button empty submit"
