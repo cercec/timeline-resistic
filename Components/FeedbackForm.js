@@ -19,31 +19,17 @@ export default function FeedbackForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    window.grecaptcha.ready(async () => {
-      try {
-        const token = await window.grecaptcha.execute(
-          process.env.GOOGLE_RECAPTCHA,
-          { action: "submit" },
-        )
-
-        const response = await axios.post("/api/sendmail", {
-          subject: subject,
-          to: "cercec.general@gmail.com",
-          content: emailContent,
-          recaptchaToken: token,
-        })
-
-        if (response.status === 200) {
-          setNotification("Vos remarques ont bien été transmises.")
-        } else {
-          setNotification("Sorry, an error occured. Please try again")
-        }
-      } catch (e) {
-        console.log("error", e)
-        setNotification("Sorry, an error occured. Please try again")
-      }
-    })
+    try {
+      await axios.post("/api/sendmail", {
+        subject: subject,
+        to: "cercec.general@gmail.com",
+        content: emailContent,
+      })
+      setNotification("Vos remarques ont bien été transmises.")
+    } catch (e) {
+      console.log("error", e)
+      setNotification("Sorry, an error occured. Please try again")
+    }
   }
 
   const handleChange = (event) => {
