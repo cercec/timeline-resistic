@@ -44,14 +44,14 @@ class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content={"http://localhost:3000/resistic-opengraph.png"}
+            content={"https://timeline.resistic.fr/resistic-opengraph.png"}
           />
           <meta property="og:url" content={"https://timeline.resistic.fr/"} />
           <meta property="og:type" content="website" />
 
           <meta
             name="twitter:card"
-            content={"http://localhost:3000/resistic-opengraph.png"}
+            content={"https://timeline.resistic.fr/resistic-opengraph.png"}
           />
           <meta name="twitter:title" content={"Timeline ResisTIC"} />
           <meta name="twitter:description" />
@@ -63,7 +63,7 @@ class MyDocument extends Document {
           />
           <meta
             name="twitter:image"
-            content={"/public/resistic-opengraph.png"}
+            content={"https://timeline.resistic.fr/resistic-opengraph.png"}
           />
         </Head>
         <body>
