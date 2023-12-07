@@ -35,6 +35,36 @@ class MyDocument extends Document {
             async
             defer
           ></script>
+          <meta property="og:title" content={"Timeline ResisTIC"} />
+          <meta
+            property="og:description"
+            content={
+              "Depuis le début des années 2010, la Russie est un laboratoire des contrôles et des contraintes numériques. Des emprises politiques croissantes se déploient sur internet, s'appuyant sur des dispositifs"
+            }
+          />
+          <meta
+            property="og:image"
+            content={"http://localhost:3000/resistic-opengraph.png"}
+          />
+          <meta property="og:url" content={"https://timeline.resistic.fr/"} />
+          <meta property="og:type" content="website" />
+
+          <meta
+            name="twitter:card"
+            content={"http://localhost:3000/resistic-opengraph.png"}
+          />
+          <meta name="twitter:title" content={"Timeline ResisTIC"} />
+          <meta name="twitter:description" />
+          <meta
+            property="og:description"
+            content={
+              "Depuis le début des années 2010, la Russie est un laboratoire des contrôles et des contraintes numériques. Des emprises politiques croissantes se déploient sur internet, s'appuyant sur des dispositifs"
+            }
+          />
+          <meta
+            name="twitter:image"
+            content={"/public/resistic-opengraph.png"}
+          />
         </Head>
         <body>
           <Main />
