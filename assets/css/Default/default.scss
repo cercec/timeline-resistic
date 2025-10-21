@@ -139,7 +139,9 @@ a, .submitFeedback {
 
 .burger-button {
   @media screen and (min-width: $phone) {
-    display: none;
+    header & {
+      display: none !important;
+    }
   }
   z-index: 9998;
   width: 4rem;
@@ -164,7 +166,9 @@ a, .submitFeedback {
 
 .vertical-menu {
   @media screen and (min-width: $phone) {
-    display: none;
+    header & {
+      display: none !important;
+    }
   }
   display: flex;
   align-items: center;

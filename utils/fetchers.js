@@ -1,7 +1,6 @@
 import * as _ from "lodash"
 import { axiosDirectus } from "./axios"
 import algoliasearch from "algoliasearch"
-import React from "react"
 
 const client = algoliasearch(
   `${process.env.APPLICATION_ID}`,
