@@ -1,18 +1,14 @@
 import axios from "axios"
 
-const SENDINBLUE_API = "https://api.sendinblue.com/v3/smtp/email"
+const BREVO_API = "https://api.brevo.com/v3/smtp/email"
 
 const sendEmail = async ({ subject, to, content }) => {
-  await axios(SENDINBLUE_API, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "api-key": `${process.env.SENDINBLUE_API_KEY}`,
-      accept: "application/json",
-    },
-    data: JSON.stringify({
+  // Use axios.post with a plain object payload
+  await axios.post(
+    BREVO_API,
+    {
       sender: {
-        name: "Resistic",
+        name: "ResisTIC",
         email: "cercec.general@gmail.com",
       },
       to: [
@@ -20,10 +16,17 @@ const sendEmail = async ({ subject, to, content }) => {
           email: to,
         },
       ],
-      subject: subject,
+      subject,
       htmlContent: content,
-    }),
-  })
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": `${process.env.BREVO_API_KEY}`,
+        accept: "application/json",
+      },
+    },
+  )
 }
 
 export { sendEmail }
